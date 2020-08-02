@@ -13,6 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'HomeController@index');
+
+// C RESTFUL APIS (CRUD Operations)
+Route::get('categories', 'CategoriesController@index');
+Route::get('categories/create', 'CategoriesController@create');
+Route::post('categories', 'CategoriesController@store');
+Route::get('categories/edit/{category}', 'CategoriesController@edit');
+Route::put('categories/{category}', 'CategoriesController@update');
+Route::post('categories/destroy/{category}', 'CategoriesController@destroy');
+
+// Products RESTFUL APIS (CRUD Operations)
+Route::get('products', 'ProductsController@index');
+Route::get('products/create', 'ProductsController@create');
+Route::post('products', 'ProductsController@store');
+Route::get('products/edit/{product}', 'ProductsController@edit');
+Route::put('products/{product}', 'ProductsController@update');
+Route::post('products/destroy/{product}', 'ProductsController@destroy');

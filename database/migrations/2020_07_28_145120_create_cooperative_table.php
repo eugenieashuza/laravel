@@ -19,8 +19,9 @@ class CreateCooperativeTable extends Migration
             $table->unsignedBigInteger('id_commune');
             $table->integer('telephone');
             $table->string('mail');
-            $table->date('date_enregistrement');
+           $table->date('date_enregistrement');
             $table->string('statut');
+            $table->boolean('etat_cooperative');
             $table->timestamps();
 
             $table->foreign('id_user')

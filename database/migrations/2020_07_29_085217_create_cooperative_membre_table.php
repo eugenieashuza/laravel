@@ -17,7 +17,9 @@ class CreateCooperativeMembreTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_cooperative');
             $table->unsignedBigInteger('id_membre');
+            $table->integer('montant');
             $table->boolean('etat_membre');
+            $table->string('categorie_membre');
             $table->date('date_adesion');
             $table->date('date_de_sortie');
             $table->timestamps();

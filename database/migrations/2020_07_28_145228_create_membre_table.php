@@ -20,8 +20,7 @@ class CreateMembreTable extends Migration
             $table->string('prenom');
             $table->unsignedBigInteger('id_commune');
             $table->boolean('sexe');
-            $table->string('mail');
-            $table->date('date_enregistrement');
+            $table->string('mail');           
             $table->unsignedBigInteger('id_users');
             $table->timestamps();
 

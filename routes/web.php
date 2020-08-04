@@ -19,18 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 
-// C RESTFUL APIS (CRUD Operations)
-Route::get('categories', 'CategoriesController@index');
-Route::get('categories/create', 'CategoriesController@create');
-Route::post('categories', 'CategoriesController@store');
-Route::get('categories/edit/{category}', 'CategoriesController@edit');
-Route::put('categories/{category}', 'CategoriesController@update');
-Route::post('categories/destroy/{category}', 'CategoriesController@destroy');
+// Cooperative RESTFUL APIS (CRUD Operations)
+Route::get('cooperatives', 'CooperativesController@index');
+Route::get('cooperatives/create', 'CooperativesController@create');
+Route::post('cooperatives', 'CooperativesController@store');
+Route::get('cooperatives/edit/{cooperative}', 'CooperativesController@edit');
+Route::put('cooperatives/{cooperative}', 'CooperativesController@update');
 
-// Products RESTFUL APIS (CRUD Operations)
-Route::get('products', 'ProductsController@index');
-Route::get('products/create', 'ProductsController@create');
-Route::post('products', 'ProductsController@store');
-Route::get('products/edit/{product}', 'ProductsController@edit');
-Route::put('products/{product}', 'ProductsController@update');
-Route::post('products/destroy/{product}', 'ProductsController@destroy');
+
+// members RESTFUL APIS (CRUD Operations)
+Route::get('membres', 'MembresController@index');
+Route::get('membres/create', 'MembresController@create');
+Route::post('membres', 'MembresController@store');
+Route::get('membres/edit/{member}', 'MembresController@edit');
+Route::put('membres/{member}', 'MembresController@update');
+
+

@@ -20,7 +20,8 @@
 			<li><a href="{{url('cooperatives')}}"><em class="fa fa-calendar">&nbsp;</em>Cooperatives</a></li>
 			<li><a href="{{url('cooperative')}}"><em class="fa fa-bar-chart">&nbsp;</em> Membres</a></li>
 			<li><a href="{{url('cooperative')}}"><em class="fa fa-clone">&nbsp;</em> Statistiques</a></li>
-			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+			<li><a href="{{url('cooperative')}}"><em class="fa fa-clone">&nbsp;</em>Utilisateurs</a></li>
+			<!-- <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Configuration <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
@@ -31,7 +32,7 @@
 						<span class="fa fa-arrow-right">&nbsp;</span> User profile
 					</a></li>
 				</ul>
-			</li>
-			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+			</li> -->
+			
 		</ul>
 	</div><!--/.sidebar-->

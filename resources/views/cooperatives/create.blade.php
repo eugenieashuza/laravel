@@ -6,7 +6,7 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Categories</li>
+            <li class="active">Ajouter Cooperative</li>
         </ol>
     </div>
     <!--/.row-->
@@ -19,56 +19,65 @@
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Inscription</h3>
-                </div>
+                
               </div>
             </div>
-            <div class="card-body">
-              <form method="POST"> 
+          <div class="card-body">
+            <form method="POST"> 
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
                   <div class="form-row">
                     <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">telephone</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Nom" name="Nom">
+                        <label class="form-control-label" for="input-mail">mail</label>
+                        <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail" size="30">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Prenom</label>
-                        <input type="text" id="input-email" class="form-control form-control-alternative" placeholder="Prenom" name="Prenom" >
+                        <label class="form-control-label" for="input-phone">telephone</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="Prenom" name="Prenom" size="30" >
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Sexe : </span>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-statut">Statut</label>
+                        <input type="text" class="form-control form-control-alternative"  placeholder="" name="statut" size="30">
                       </div>
-                      <div class="gender-decale">
-                        <div class="gender-design">
-                          <input type="radio" name="gender" id="gender" value="M">
-                          <label for="gender">M</label>
+                    </div>
+                    <div class="col">
+                       <div class="form-group">
+                         <label for="cat_name">commune</label>
+                          <select name="commune_id" id="" class="form-control">
+                          <option value="">Select commune</option>
+                      
+                           </select>
                         </div>
-
-                        <div class="gender-design gender-design-2">
-                          <input type="radio" name="gender" id="gender-f" value="F">
-                          <label for="gender-f">F</label>
-                        </div>
+                    </div>
+                 </div>
+                 <div class="col">
+                    <div class="form-group">                  
+                         <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
+                          <input type="radio" name="gender" id="actif" value="1">
+                          <label for="gender">Actif</label>                      
+                          <input type="radio" name="gender" id="nonactif" value="0">
+                          <label for="gender-f">Non Actif</label>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col">
-                      <label class="form-control-label" for="input-first-name">Date de naissance</label>
-                      <input type="date" id="input-first-name" class="form-control form-control-alternative" name="datenaiss">
-                    </div>
-                    <div class="form-group col"></div>
-                  </div>
-                 
                 </div>
+
+                <hr class="my-4" />
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-default" type="reset">Reset</button>              
+              </form>
+            </div>
+          </div>
+        </div>
+ </div>
+                    
+                 
+                 
+          </div>
     <div class="row">
         <div class="col-lg-12">
         </div><!-- /.panel-->

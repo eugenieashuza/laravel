@@ -41,8 +41,10 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
-                <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>
+                <div class="form-group">
+                   <button class="btn btn-primary" type="submit">Save</button>
+                   <button class="btn btn-default" type="reset">Reset</button>
+                </div>
             </form>
         </div>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCooperativeTable extends Migration
+class CreateCooperativesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCooperativeTable extends Migration
      */
     public function up()
     {
-        Schema::create('cooperative', function (Blueprint $table) {
+        Schema::create('cooperatives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_commune');

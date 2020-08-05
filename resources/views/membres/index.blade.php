@@ -1,5 +1,27 @@
 @extends('templates.default_layout')
 @section('content')
+
+
+          <div class="card bg-default shadow table-box">
+            <div class="card-header row add-element-box bg-transparent border-0">
+              <h3 class="text-white col-9 mb-0">Cooperatives</h3>
+              <div class="offset-1"></div>
+              <div class="col add-element">
+                <fieldset>
+                  <form method="post">
+                    <div class="form-design">
+                      <label for="trie" >Trie&nbsp;:&nbsp;</label>
+                      <select name="trie" id="trie" class="form-control trie form-control-sm">
+                        <?php foreach ([20,50,100,500] as $limit): ?>
+                          <option <?php if(isset($_POST['trie']) && $_POST['trie'] == $limit) echo "selected"; ?> value="<?= $limit ?>"><?= $limit ?></option>
+                        <?php endforeach ?>  
+                      </select>
+                    </div>
+                  </form>
+                </fieldset> 
+              </div>
+            </div>
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">

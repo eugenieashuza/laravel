@@ -17,7 +17,7 @@
 		</form>
 		<ul class="nav menu">
 			<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Acceuil</a></li>
-			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em>Cooperatives</a></li>
+			<li><a href="{{url('cooperatives')}}"><em class="fa fa-calendar">&nbsp;</em>Cooperatives</a></li>
 			<li><a href="{{url('cooperative')}}"><em class="fa fa-bar-chart">&nbsp;</em> Membres</a></li>
 			<li><a href="{{url('cooperative')}}"><em class="fa fa-clone">&nbsp;</em> Statistiques</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">

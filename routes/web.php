@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 
-// Cooperative RESTFUL APIS (CRUD Operations)
+// Cooperative RESTFUL APIS (CRU Operations)
 Route::get('cooperatives', 'CooperativesController@index');
 Route::get('cooperatives/create', 'CooperativesController@create');
 Route::post('cooperatives', 'CooperativesController@store');
@@ -27,7 +27,7 @@ Route::get('cooperatives/edit/{cooperative}', 'CooperativesController@edit');
 Route::put('cooperatives/{cooperative}', 'CooperativesController@update');
 
 
-// members RESTFUL APIS (CRUD Operations)
+// members RESTFUL APIS (CRU Operations)
 Route::get('membres', 'MembresController@index');
 Route::get('membres/create', 'MembresController@create');
 Route::post('membres', 'MembresController@store');

@@ -21,46 +21,59 @@ class CooperativesController extends Controller
         return view('cooperatives/create');
     }
 
-  /*  public function store(Request $request)
+    public function store(Request $request)
     {
         // Validation
         $request->validate([
             'cat_name' => 'required'
         ]);
 
-        $category = new Category();
-        $category->cat_name = $request->cat_name;
+        $cooperatives = new Cooperative();
+       // $cooperatives->cat_name = $request->cat_name;
 
-        $category->save();
-        return redirect('categories');
+        $cooperatives->save();
+        return redirect('cooperatives');
     }
 
     //Dependancy injection (Injection des dependances)
     
-    public function edit(Category $category)
+    public function edit(Cooperative $cooperatives)
     {
-        $category = Category::find($category->id);
-        return view('categories/edit', [
-            'category' => $category
+        $cooperatives = Cooperatives::find($cooperatives->id);
+        return view('cooperatives/edit', [
+            'cooperatives' => $cooperatives
         ]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Cooperative $cooperatives)
     {
         // Validation
         $request->validate([
             'cat_name' => 'required'
         ]);
 
-        $category->cat_name = $request->cat_name;
-        $category->save();
-        return redirect('categories');
+         $cooperatives->cat_name = $request->cat_name;
+         $cooperatives->save();
+        return redirect('cooperatives');
     }
 
-    public function destroy(Category $category)
-    {
-        $category = Category::find($category->id);
-        $category->delete();
-        return redirect('categories');
-    }*/
+   /* $factory->define(App\Editeur::class, function (Faker\Generator $faker) {
+        return [
+            'nom' => $faker->name,
+        ];
+    });
+     
+    $factory->define(App\Auteur::class, function (Faker\Generator $faker) {
+        return [
+            'nom' => $faker->name,
+        ];
+    });
+     
+    $factory->define(App\Livre::class, function (Faker\Generator $faker) {
+        return [
+            'titre' => $faker->sentence(rand(2, 3)),
+            'description' => $faker->text,
+            'editeur_id' => $faker->numberBetween(1, 40),
+        ];
+    });*/
 }

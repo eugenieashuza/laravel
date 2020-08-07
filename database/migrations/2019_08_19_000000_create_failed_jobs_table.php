@@ -28,8 +28,8 @@ class CreateFailedJobsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('failed_jobs');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('failed_jobs');
+    // }
 }

@@ -15,7 +15,7 @@ class CreateProvinceTable extends Migration
     {
         Schema::create('province', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->timestamps();
         });
     }
@@ -25,8 +25,8 @@ class CreateProvinceTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('province');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('province');
+    // }
 }

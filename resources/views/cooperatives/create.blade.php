@@ -27,6 +27,13 @@
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
                   <div class="form-row">
+                  <div class="form-group">
+                     <label class="form-control-label" for="input-st">Statut</label>
+                        <input type="file" class=" @error('image') is-invalid @enderror" name="image" id="image"  value="{{ old('image') }}">
+                        @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label class="form-control-label" for="input-mail">mail</label>
@@ -55,6 +62,7 @@
                         </div>
                     </div>
                  </div>
+                
                  <div class="col">
                     <div class="form-group">                  
                          <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>

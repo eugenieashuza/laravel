@@ -12,7 +12,8 @@ class CreateCooperativeMembreTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {  
+        Schema::disableForeignKeyConstraints();
         Schema::create('cooperative_membre', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_cooperative');
@@ -40,8 +41,8 @@ class CreateCooperativeMembreTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('cooperative_membre');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('cooperative_membre');
+    // }
 }

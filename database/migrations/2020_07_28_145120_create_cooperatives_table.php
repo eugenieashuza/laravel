@@ -13,12 +13,13 @@ class CreateCooperativesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('cooperatives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_commune');
             $table->integer('telephone');
-            $table->string('mail');
+            $table->string('mail')->unique();
            $table->date('date_enregistrement');
             $table->string('statut');
             $table->boolean('etat_cooperative');
@@ -41,8 +42,8 @@ class CreateCooperativesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('cooperative');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('cooperative');
+    // }
 }

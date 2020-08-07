@@ -12,15 +12,16 @@ class CreateMembreTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
+        Schema::disableForeignKeyConstraints();
         Schema::create('membre', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->integer('age');
             $table->string('prenom');
             $table->unsignedBigInteger('id_commune');
             $table->boolean('sexe');
-            $table->string('mail');           
+            $table->string('mail')->unique();          
             $table->unsignedBigInteger('id_users');
             $table->timestamps();
 
@@ -41,8 +42,8 @@ class CreateMembreTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('membre');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('membre');
+    // }
 }

@@ -13,9 +13,10 @@ class CreateCommuneTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('commune', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->unsignedBigInteger('id_province');
             $table->timestamps();
 
@@ -31,8 +32,8 @@ class CreateCommuneTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('commune');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('commune');
+    // }
 }

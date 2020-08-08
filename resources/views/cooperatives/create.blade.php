@@ -23,42 +23,46 @@
               </div>
             </div>
           <div class="card-body">
-            <form method="POST"> 
+            
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
                   <div class="form-row">
                   <div class="form-group">
-                     <label class="form-control-label" for="input-st">Statut</label>
-                        <input type="file" class=" @error('image') is-invalid @enderror" name="image" id="image"  value="{{ old('image') }}">
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                  <form action="{{url('cooperatives')}}"  method="POST" enctype="multipart/form-data"> 
+                  @csrf
+                  <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="statut">Statut</label>
+                        <input type="file" name="statut">
+                      </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-mail">mail</label>
+                        <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail" size="30">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-phone">telephone</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="Prenom" name="Prenom" size="30" >
+                        <label class="form-control-label" for="phone">telephone</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="Prenom" name="phone" size="30" >
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-statut">Statut</label>
-                        <input type="text" class="form-control form-control-alternative"  placeholder="" name="statut" size="30">
-                      </div>
-                    </div>
+                    
                     <div class="col">
                        <div class="form-group">
-                         <label for="cat_name">commune</label>
-                          <select name="commune_id" id="" class="form-control">
-                          <option value="">Select commune</option>
-                      
-                           </select>
+                         <label for="communes_nom">commune</label>
+                         <select name="communes_id" id="" class="form-control" 
+                               class="@error('communes_id') is-danger @enderror">
+                                <option value="">Select commune</option>
+                                   @foreach($communes as $commune)
+                                <option value="{{$commune->id}}">{{$commune->nom}}</option>
+                               @endforeach
+                                @error('communes_id')
+                            <div class="alert alert-danger">{{$message}}</div>
+                             @enderror
+                          </select>                         
+                          <a href="#" class="btn btn-primary">Ajouter une Commune</a>
                         </div>
                     </div>
                  </div>
@@ -66,9 +70,9 @@
                  <div class="col">
                     <div class="form-group">                  
                          <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
-                          <input type="radio" name="gender" id="actif" value="1">
+                          <input type="radio" name="actif" value="1">
                           <label for="gender">Actif</label>                      
-                          <input type="radio" name="gender" id="nonactif" value="0">
+                          <input type="radio" name="actif" value="0">
                           <label for="gender-f">Non Actif</label>
                       </div>
                     </div>

@@ -22,16 +22,16 @@ Route::get('/', 'HomeController@index');
 // Cooperative RESTFUL APIS (CRU Operations)
 Route::get('cooperatives', 'CooperativesController@index');
 Route::get('cooperatives/create', 'CooperativesController@create');
-Route::post('cooperatives', 'CooperativesController@store');
+Route::post('cooperatives', 'CooperativesController@storecooperatives');
 Route::get('cooperatives/edit/{cooperative}', 'CooperativesController@edit');
-Route::put('cooperatives/{cooperative}', 'CooperativesController@update');
+Route::put('cooperatives/{cooperative}', 'CooperativesController@updatecooperatives');
 
 
 // members RESTFUL APIS (CRU Operations)
 Route::get('membres', 'MembresController@index');
 Route::get('membres/create', 'MembresController@create');
-Route::post('membres', 'MembresController@store');
+Route::post('membres', 'MembresController@storemembres');
 Route::get('membres/edit/{member}', 'MembresController@edit');
-Route::put('membres/{member}', 'MembresController@update');
+Route::put('membres/{member}', 'MembresController@updatemembres');
 
 

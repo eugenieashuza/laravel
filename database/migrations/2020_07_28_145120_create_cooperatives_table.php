@@ -17,10 +17,9 @@ class CreateCooperativesTable extends Migration
         Schema::create('cooperatives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_commune');
+            $table->unsignedBigInteger('id_commune');       
             $table->integer('telephone');
-            $table->string('mail')->unique();
-           $table->date('date_enregistrement');
+            $table->string('mail')->unique();          
             $table->string('statut');
             $table->boolean('etat_cooperative');
             $table->timestamps();
@@ -32,7 +31,7 @@ class CreateCooperativesTable extends Migration
 
             $table->foreign('id_commune')
             ->references('id')
-            ->on('commune')
+            ->on('communes')
             ->onDelete('cascade');
         });
     }

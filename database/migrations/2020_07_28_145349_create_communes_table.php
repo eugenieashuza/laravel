@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommuneTable extends Migration
+class CreateCommunesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCommuneTable extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('commune', function (Blueprint $table) {
+        Schema::create('communes', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->unique();
             $table->unsignedBigInteger('id_province');
@@ -22,7 +22,7 @@ class CreateCommuneTable extends Migration
 
             $table->foreign('id_province')
             ->references('id')
-            ->on('province')
+            ->on('provinces')
             ->onDelete('cascade');
         });
     }

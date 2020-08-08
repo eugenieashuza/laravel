@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCooperativeMembreTable extends Migration
+class CreateCooperativeMembresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCooperativeMembreTable extends Migration
     public function up()
     {  
         Schema::disableForeignKeyConstraints();
-        Schema::create('cooperative_membre', function (Blueprint $table) {
+        Schema::create('cooperative_membres', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_cooperative');
             $table->unsignedBigInteger('id_membre');
@@ -24,14 +24,15 @@ class CreateCooperativeMembreTable extends Migration
             $table->date('date_adesion');
             $table->date('date_de_sortie');
             $table->timestamps();
+
             $table->foreign('id_cooperative')
             ->references('id')
-            ->on('cooperative')
+            ->on('cooperatives')
             ->onDelete('cascade');
 
             $table->foreign('id_membre')
             ->references('id')
-            ->on('membre')
+            ->on('membres')
             ->onDelete('cascade');
         });
     }

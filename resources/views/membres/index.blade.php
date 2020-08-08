@@ -2,72 +2,82 @@
 @section('content')
 
 
-          <div class="card bg-default shadow table-box">
-            <div class="card-header row add-element-box bg-transparent border-0">
-              <h3 class="text-white col-9 mb-0">Cooperatives</h3>
-              <div class="offset-1"></div>
-              <div class="col add-element">
-                <fieldset>
-                  <form method="post">
-                    <div class="form-design">
-                      <label for="trie" >Trie&nbsp;:&nbsp;</label>
-                      <select name="trie" id="trie" class="form-control trie form-control-sm">
-                        <?php foreach ([20,50,100,500] as $limit): ?>
-                          <option <?php if(isset($_POST['trie']) && $_POST['trie'] == $limit) echo "selected"; ?> value="<?= $limit ?>"><?= $limit ?></option>
-                        <?php endforeach ?>  
-                      </select>
-                    </div>
-                  </form>
-                </fieldset> 
-              </div>
-            </div>
+<div  class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <div class="row">
-        <ol class="breadcrumb">
-            <li><a href="#">
-                    <em class="fa fa-home"></em>
-                </a></li>
-            <li class="active">Products</li>
-        </ol>
-    </div>
-    <!--/.row-->
+<ol class="breadcrumb">
+    <li><a href="#">
+            <em class="fa fa-home"></em>
+        </a></li>
+    <li class="active">Membres</li>
+</ol>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Products</h1>
-            <a href="{{url('products/create')}}" class="btn btn-success">New</a>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Category name</th>
-                        <th>Product name</th>
-                        <th>Unit price</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($products as $product)
-                    <tr>
-                        <td>{{$product->id}}</td>
-                        <td>{{$product->cat_name}}</td>
-                        <td>{{$product->product_name}}</td>
-                        <td>{{$product->unit_price}}</td>
-                        <td>
-                            <a href="products/edit/{{$product->id}}" class="btn btn-primary">Edit</a>
-                            <form action="products/destroy/{{$product->id}}" method="POST">
-                            @csrf
-                                <button type="submit" onclick="return confirm('Voulez vs vraiment supprimer ce produit ?')" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+
+<div class="card-header row add-element-box bg-transparent ">
+
+      <form method="post">
+      <fieldset>
+      <h3 class="text-white col-6 breadcrumb mb-0">Operations
+      <a href="{{url('cooperatives/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
+          <i class="fa fa-plus"></i>
+        </a>
+        <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
+          <i class="fa fa-print"></i>
+        </a>
+      </h3>
+       
+        </fieldset>
+        </form>  
     </div>
-    <!--/.row-->
+
+    <div class="table-responsive">
+      <table class="table align-items-center table-sm table-dark table-flush">
+        <thead class="thead-dark">
+          <tr>
+           
+            <th scope="col">Numero</th>
+            <th scope="col"> nom </th>           
+            <th scope="col">prenom</th>
+            <th scope="col"> age </th>
+            <th scope="col">commune</th>
+            <th scope="col">province</th>
+            <th scope="col">sexe</th> 
+            <th scope="col">mail</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+        <?php  $i=1 ?>
+            @foreach($membres as $membre)           
+            <tr>
+                <td><?= $i ?></td>
+                <td>{{$membre- nom}}</td>
+                <td>{{$membre->prenom}}</td>
+                <td>{{$membre->age}}</td>
+                <td>{{$membre->nomc}}</td>
+                <td>{{$membre->nomp}}</td>
+                <td>{{$membre->sexe}}</td> 
+                <td>{{$membre->mail}}</td> 
+               
+                <td>                 
+                    <a href="membres/edit/{{$membres->id}}" class="btn btn-primary">Edit</a>                   
+                </td>
+            </tr>
+            <?php $i++ ?>
+            @endforeach
+        </tbody>
+     
+      </table>
+  
+    </div>
+ <!-- <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img alt="Profil"  class="img-design" src="./images/theme/encadreur/<?php // $Encad->avatarEncad ?>">
+                  </a>
+                  <div class="media-body">
+                    <span><?php // //$Encad->NomEncad ?></span>
+                  </div>
+  </div> -->
+
 
 
     <div class="row">

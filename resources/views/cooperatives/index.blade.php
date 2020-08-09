@@ -34,13 +34,13 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Numero</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Mail</th>
                     <!-- <th scope="col">Pseudo</th> -->
                     <th scope="col">Etat</th>
                     <th scope="col">Date d'enregistrement</th>
                     <th scope="col">commune</th>
-                    <th scope="col">province</th>
-                    <th scope="col">Etat</th> 
+                    <th scope="col">province</th>                  
                     <th scope="col">action</th>
                     
                   </tr>
@@ -51,6 +51,7 @@
                     
                     <tr>
                         <td><?= $i ?></td>
+                        <td>{{$cooperatives->nom}}</td>
                         <td>{{$cooperatives->mail}}</td>
 
                         <td>
@@ -64,7 +65,7 @@
                         <td>{{$cooperatives->created_at}}</td>
                         <td>{{$cooperatives->nomc}}</td>
                         <td>{{$cooperatives->nomp}}</td>
-                       <td>{{$cooperatives->statut}}</td> 
+                      
                        
                         <td>
                            <a href="#" class="btn btn-primary">Voir le statut</a>
@@ -72,7 +73,7 @@
                             
                         </td>
                     </tr>
-                    <?= $i++ ?>
+                    <?php $i++ ?>
                     @endforeach
                 </tbody>
              

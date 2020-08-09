@@ -16,6 +16,7 @@ class CreateCooperativesTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('cooperatives', function (Blueprint $table) {
             $table->id();
+            $table->string('nom')->unique();   
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_commune');       
             $table->integer('telephone');

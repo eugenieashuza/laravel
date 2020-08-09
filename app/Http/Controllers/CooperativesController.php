@@ -13,7 +13,7 @@ class CooperativesController extends Controller
         $cooperatives = DB::table('cooperatives')
         ->join('communes', 'communes.id', 'cooperatives.id_commune')
         ->join('provinces', 'provinces.id', 'communes.id')                 
-        ->select(DB::raw('cooperatives.id,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
+        ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
         ->distinct('cooperatives.id')
         ->get();
        // $text=$cooperatives->statut;
@@ -37,7 +37,8 @@ class CooperativesController extends Controller
             'statut' => 'required' ,
             'phone' => 'required' ,
             'communes_id' => 'required' ,
-            'actif' => 'required'
+            'actif' => 'required' ,
+            'nom' => 'required'
         ]);
 
         // $cooperative = DB::table('cooperatives')->where('$request->mail');  
@@ -48,6 +49,7 @@ class CooperativesController extends Controller
         $cooperatives->telephone = $request->phone;
         $cooperatives->statut = $request->statut;
         $cooperatives->mail = $request->mail;
+        $cooperatives->nom = $request->nom;
         $cooperatives->id_commune = $request->communes_id;
         $cooperatives->etat_cooperative = $request->actif;
         $cooperatives->id_user = 1;
@@ -80,6 +82,7 @@ class CooperativesController extends Controller
             'statut' => 'required' ,
             'phone' => 'required' ,
             'communes_id' => 'required' ,
+            'nom' => 'required' ,
             'actif' => 'required'
         ]);
 
@@ -91,6 +94,7 @@ class CooperativesController extends Controller
         $cooperatives->telephone = $request->phone;
         $cooperatives->statut = $request->statut;
         $cooperatives->mail = $request->mail;
+        $cooperatives->nom = $request->mail;
         $cooperatives->id_commune = $request->communes_id;
         $cooperatives->etat_cooperative = $request->actif;
         $cooperatives->id_user = 1;

@@ -44,9 +44,9 @@ class MembresController extends Controller
 
         ]);
 
-        // $membre = DB::table('membres')->where('$request->mail');  
-        // if($membre->mail == null)
-        // {
+         $membre = DB::table('membres')->where('$request->mail');  
+         if($membre->mail == null)
+        {
                
             $membre = new Membre();
             $membre->nom = $request->nom;
@@ -55,13 +55,10 @@ class MembresController extends Controller
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
             $membre->sexe = $request->gender;
-            $membre->id_user = 1;
+            $membre->id_users = 1;
             $membre->save();
-        // }
-    //     $path = $request->file('$request->statut')->store(
-    //         '$request->statut', 'public'
-    //  );
-    // asset('storage/avatars/avatar.jpg');
+         }
+    
     }
 
 }

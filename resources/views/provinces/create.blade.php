@@ -6,7 +6,7 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Ajouter Cooperative</li>
+            <li class="active">Ajouter Membre</li>
         </ol>
     </div>
     <!--/.row-->
@@ -28,30 +28,30 @@
                 <div class="pl-lg-4">
                   <div class="form-row">
                   <div class="form-group">
-                  <form action="{{url('cooperatives')}}"  method="POST" enctype="multipart/form-data"> 
+                  <form action="{{url('membres')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   <div class="col">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">nom</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom">
+                        <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom" size="30">
                       </div>
                     </div>
-                  <div class="col">
+                    <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="statut">Statut</label>
-                        <input type="file" name="statut">
+                        <label class="form-control-label" for="mail">prenom</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="prenom" name="prenom" size="30">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">mail</label>
-                        <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail">
+                        <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail" size="30">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="phone">telephone</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="Numero" name="phone">
+                        <label class="form-control-label" for="phone">age</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="age" name="age" size="30" >
                       </div>
                     </div>
                     
@@ -75,11 +75,11 @@
                 
                  <div class="col">
                     <div class="form-group">                  
-                         <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
-                          <input type="radio" name="actif" value="1">
-                          <label for="gender">Actif</label>                      
-                          <input type="radio" name="actif" value="0">
-                          <label for="gender-f">Non Actif</label>
+                         <span class="input-group-text">Sexe</span>
+                          <input type="radio" name="gender" value="Feminin">
+                          <label for="gender">Feminin</label>                      
+                          <input type="radio" name="gender" value="Masculin">
+                          <label for="gender-f">Masculin</label>
                       </div>
                     </div>
                 </div>
@@ -94,8 +94,7 @@
  </div>
                     
                  
-                 
-          </div>
+
     <div class="row">
         <div class="col-lg-12">
         </div><!-- /.panel-->

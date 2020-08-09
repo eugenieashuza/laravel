@@ -28,7 +28,7 @@
                 <div class="pl-lg-4">
                   <div class="form-row">
                   <div class="form-group">
-                  <form action="{{url('cooperatives')}}"  method="POST" enctype="multipart/form-data"> 
+                  <form action="{{url('membres')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   <div class="col">
                       <div class="form-group">

@@ -45,7 +45,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label class="form-control-label" for="phone">telephone</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="Prenom" name="phone" size="30" >
+                        <input type="text" class="form-control form-control-alternative" placeholder="Numero" name="phone">
                       </div>
                     </div>
                     

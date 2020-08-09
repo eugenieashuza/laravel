@@ -17,7 +17,7 @@
       <form method="post">
       <fieldset>
       <h3 class="text-white col-6 breadcrumb mb-0">Operations
-      <a href="{{url('cooperatives/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
+      <a href="{{url('membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
           <i class="fa fa-plus"></i>
         </a>
         <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">

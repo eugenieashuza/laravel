@@ -40,9 +40,9 @@ class CooperativesController extends Controller
             'actif' => 'required'
         ]);
 
-        $cooperative = DB::table('cooperatives')->where('$request->mail');  
-        if($cooperative->mail == null)
-        {
+        // $cooperative = DB::table('cooperatives')->where('$request->mail');  
+        // if($cooperative->mail == null)
+        // {
                
         $cooperatives = new Cooperative();
         $cooperatives->telephone = $request->phone;
@@ -52,7 +52,7 @@ class CooperativesController extends Controller
         $cooperatives->etat_cooperative = $request->actif;
         $cooperatives->id_user = 1;
         $cooperatives->save();
-        }
+        // }
     //     $path = $request->file('$request->statut')->store(
     //         '$request->statut', 'public'
     //  );
@@ -75,12 +75,26 @@ class CooperativesController extends Controller
 
     public function updatecooperatives(Request $request, Cooperative $cooperatives)
     {
-        $cooperatives = DB::table('cooperatives')
-                ->join('communes', 'communes.id', 'cooperatives.id_commune')              
-                ->select(DB::raw('cooperaatives.mail,cooperaatives.etat_cooperative,cooperatives.created_at'))
-                ->distinct('cooperatives.id')
-                ->get();
-    return view('cooperatives/index', ['cooperatives'=>$cooperatives]);
+        $request->validate([
+            'mail' => 'required' ,
+            'statut' => 'required' ,
+            'phone' => 'required' ,
+            'communes_id' => 'required' ,
+            'actif' => 'required'
+        ]);
+
+        // $cooperative = DB::table('cooperatives')->where('$request->mail');  
+        // if($cooperative->mail == null)
+        // {
+               
+        $cooperatives = new Cooperative();
+        $cooperatives->telephone = $request->phone;
+        $cooperatives->statut = $request->statut;
+        $cooperatives->mail = $request->mail;
+        $cooperatives->id_commune = $request->communes_id;
+        $cooperatives->etat_cooperative = $request->actif;
+        $cooperatives->id_user = 1;
+        $cooperatives->save();
     }
 
    /* $factory->define(App\Editeur::class, function (Faker\Generator $faker) {

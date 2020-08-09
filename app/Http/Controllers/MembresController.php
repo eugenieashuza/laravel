@@ -10,25 +10,26 @@ class MembresController extends Controller
 
     public function index()
     {
-        $cooperatives = DB::table('membres')
+        $membres = DB::table('membres')
         ->join('communes', 'communes.id', 'membres.id_commune')
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('membres.id,membres.nom,membres.mail,membres.prenom,membres.sexe,membres.age,communes.nom as nomc,provinces.nom as nomp'))
-        ->distinct('cooperatives.id')
+        ->distinct('membres.id')
         ->get();
     
 
-      return view('membres/index', ['membres'=>$membres]);
+      return view('membres/index', ['membres'=> $membres]);
     }
 
      public function create()
      {
          # code...
-         $membres= Membres::all();
-        return view('membres/create',  ['membres'=>$membres]);
+
+        $communes= Commune::all();
+        return view('membres/create',  ['communes' => $communes]);
     }
 
-    public function storecooperatives(Request $request)
+    public function storemembres(Request $request)
     {
         // Validation
         $request->validate([
@@ -43,9 +44,9 @@ class MembresController extends Controller
 
         ]);
 
-        $membre = DB::table('membres')->where('$request->mail');  
-        if($membre->mail == null)
-        {
+        // $membre = DB::table('membres')->where('$request->mail');  
+        // if($membre->mail == null)
+        // {
                
             $membre = new Membre();
             $membre->nom = $request->nom;
@@ -53,10 +54,10 @@ class MembresController extends Controller
             $membre->mail = $request->mail;
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
-            $membre->gender = $request->gender;
+            $membre->sexe = $request->gender;
             $membre->id_user = 1;
             $membre->save();
-        }
+        // }
     //     $path = $request->file('$request->statut')->store(
     //         '$request->statut', 'public'
     //  );

@@ -8,7 +8,7 @@
     <li><a href="#">
             <em class="fa fa-home"></em>
         </a></li>
-    <li class="active">Membres</li>
+    <li class="active">Provinces</li>
 </ol>
 
 
@@ -17,7 +17,7 @@
       <form method="post">
       <fieldset>
       <h3 class="text-white col-6 breadcrumb mb-0">Operations
-      <a href="{{url('membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
+      <a href="{{url('provinces/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une province">
           <i class="fa fa-plus"></i>
         </a>
         <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
@@ -35,31 +35,21 @@
           <tr>
            
             <th scope="col">Numero</th>
-            <th scope="col"> nom </th>           
-            <th scope="col">prenom</th>
-            <th scope="col"> age </th>
-            <th scope="col">commune</th>
-            <th scope="col">province</th>
-            <th scope="col">sexe</th> 
-            <th scope="col">mail</th>
-            
+            <th scope="col"> nom </th> 
+            <th scope="col">Date d'enregistrement</th> 
+            <th scope="col">Action</th>          
           </tr>
         </thead>
         <tbody>
         <?php  $i=1 ?>
-            @foreach($membres as $membre)           
+            @foreach($provinces as $province)           
             <tr>
                 <td><?= $i ?></td>
-                <td>{{$membre->nom}}</td>
-                <td>{{$membre->prenom}}</td>
-                <td>{{$membre->age}}</td>
-                <td>{{$membre->nomc}}</td>
-                <td>{{$membre->nomp}}</td>
-                <td>{{$membre->sexe}}</td> 
-                <td>{{$membre->mail}}</td> 
-               
+                <td>{{$province->nom}}</td>
+                <td>{{$province->created_at}}</td>
+
                 <td>                 
-                    <a href="membres/edit/{{$membre->id}}" class="btn btn-primary">Edit</a>                   
+                    <a href="provinces/edit/{{$province->id}}" class="btn btn-primary">Edit</a>                   
                 </td>
             </tr>
             <?php $i++ ?>
@@ -80,12 +70,5 @@
 
 
 
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
+   
 @endsection()

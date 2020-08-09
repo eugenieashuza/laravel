@@ -6,41 +6,90 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Update a product category</li>
+            <li class="active">Modifier Cooperative</li>
         </ol>
     </div>
     <!--/.row-->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Product categories</h1>
-            <form action="/categories/{{$category->id}}" method="POST">
-            @csrf
-            @method('PUT')
-            
-                <div class="form-group">
-                    <label for="">Category name</label>
-                    <input type="text" name="cat_name" id="" 
-                    value="{{$category->cat_name}}" class="form-control" class="@error('cat_name') is-danger @enderror" placeholder="" aria-describedby="helpId">
-                    @error('cat_name')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+
+        <div class="col-xl-8  edit-prifile order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
                 
-                <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>
+              </div>
+            </div>
+          <div class="card-body">
+            
+                <h6 class="heading-small text-muted mb-4"> information</h6>
+                <div class="pl-lg-4">
+                  <div class="form-row">
+                  <div class="form-group">
+                  <form action="/cooperatives/{{$cooperative->id}}"  method="POST" enctype="multipart/form-data"> 
+                  @csrf
+                @method('PUT')
+                  <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="mail">nom</label>
+                        <input type="text" class="form-control form-control-alternative" value="{{$cooperative->nom}}" name="nom">
+                      </div>
+                    </div>
+                  <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="statut">Statut</label>
+                        <input type="file" name="statut" value="{{$cooperative->statut}}">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="mail">mail</label>
+                        <input type="mail" class="form-control form-control-alternative" value="{{$cooperative->mail}}" name="mail">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="phone">telephone</label>
+                        <input type="text" class="form-control form-control-alternative" value="{{$cooperative->telephone}}" name="phone">
+                      </div>
+                    </div>
+                    
+                    <div class="col">
+                       <div class="form-group">
+                         <label for="communes_nom">commune</label>
+                         <select name="communes_id" id="" class="form-control" 
+                               class="@error('communes_id') is-danger @enderror">
+                                <option value="">Select commune</option>
+                                   @foreach($communes as $commune)
+                                <option value="{{$commune->id}}">{{$commune->nom}}</option>
+                               @endforeach
+                                @error('communes_id')
+                            <div class="alert alert-danger">{{$message}}</div>
+                             @enderror
+                          </select>                         
+                          <a href="#" class="btn btn-primary">Ajouter une Commune</a>
+                        </div>
+                    </div>
+                 </div>
+                
+                 <div class="col">
+                    <div class="form-group">                  
+                         <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
+                          <input type="radio" name="actif" value="1">
+                          <label for="gender">Actif</label>                      
+                          <input type="radio" name="actif" value="0">
+                          <label for="gender-f">Non Actif</label>
+                      </div>
+                    </div>
                 </div>
-            </form>
+
+                <hr class="my-4" />
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-default" type="reset">Reset</button>              
+              </form>
+            </div>
+          </div>
         </div>
-    </div>
-    <!--/.row-->
-
-
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
-@endsection()
+ </div>

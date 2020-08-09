@@ -4,7 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cooperative extends Model{
 
-
+    public function Commune()
+    {
+        return $this->hasMany('App\Commune');
+    }
    // $result = DB::Table('table_name')->select('column1','column2')->where('id',1)->get(); 
    //Table('table')->select('name','surname')->where('id',1)->get();
   /* <form method="post" enctype="multipart/form-data" action="upload.php">

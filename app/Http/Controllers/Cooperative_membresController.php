@@ -121,23 +121,3 @@ class CooperativesController extends Controller
         return back()
             ->with('success','Fichier envoyé.');
     }
-
-    public function uploadFile(Request $request){
- 
-        $url = Storage::url('fileToUpload');
-        $path = Storage::disk('public')->path('files');
-     
-        $files_with_size = array();
-        $files = Storage::files('uploads');
-        foreach ($files as $key => $file) {
-          $files_with_size[$key]['name'] = $file;
-        }
-     
-        return view('uploadfile', [
-            'files' => $files,
-            'url' => $url,
-            'path' => $path
-          ]);
-        }
-
-}

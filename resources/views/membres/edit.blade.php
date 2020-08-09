@@ -6,56 +6,94 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Update a product</li>
+            <li class="active">Modifier Membre</li>
         </ol>
     </div>
     <!--/.row-->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Products</h1>
-            <form action="/products/{{$product->id}}" method="POST">
-                @csrf
-                @method('PUT')
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
 
-                <div class="form-group">
-                    <label for="cat_name">Category name</label>
-                    <select name="category_id" id="" class="form-control">
-                        <option value="">Select category</option>
-                        @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->cat_name}}</option>
-                        @endforeach
-                    </select>
+        <div class="col-xl-8  edit-prifile order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                
+              </div>
+            </div>
+          <div class="card-body">
+            
+                <h6 class="heading-small text-muted mb-4"> information</h6>
+                <div class="pl-lg-4">
+                  <div class="form-row">
+                  <div class="form-group">
+                  <form action="/membres/{{$membre->id}}"  method="POST" enctype="multipart/form-data"> 
+                  @csrf
+                  @method('PUT')
+                  <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="mail">nom</label>
+                        <input type="text" class="form-control form-control-alternative" value="{{$membre->nom}}" name="nom" >
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="mail">prenom</label>
+                        <input type="text" class="form-control form-control-alternative" value="{{$membre->prenom}}" name="prenom" >
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="mail">mail</label>
+                        <input type="mail" class="form-control form-control-alternative" value="{{$membre->mail}}" name="mail" >
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label class="form-control-label" for="phone">age</label>
+                        <input type="text" class="form-control form-control-alternative" value="{{$membre->age}}" name="age"  >
+                      </div>
+                    </div>
+                    
+                    <div class="col">
+                       <div class="form-group">
+                         <label for="communes_nom">commune</label>
+                         <select name="communes_id" id="" class="form-control" 
+                               class="@error('communes_id') is-danger @enderror">
+                                <option value="">Select commune</option>
+                                   @foreach($communes as $commune)
+                                <option value="{{$commune->id}}">{{$commune->nom}}</option>
+                               @endforeach
+                                @error('communes_id')
+                            <div class="alert alert-danger">{{$message}}</div>
+                             @enderror
+                          </select>                         
+                          <a href="#" class="btn btn-primary">Ajouter une Commune</a>
+                        </div>
+                    </div>
+                 </div>
+                
+                 <div class="col">
+                    <div class="form-group">                  
+                         <span class="input-group-text">Sexe</span>
+                          <input type="radio" name="gender" value="Feminin">
+                          <label for="gender">Feminin</label>                      
+                          <input type="radio" name="gender" value="Masculin">
+                          <label for="gender-f">Masculin</label>
+                      </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="">Product name</label>
-                    <input type="text" name="product_name" id="" value="{{$product->product_name}}" class="form-control" class="@error('product_name') is-danger @enderror" placeholder="" aria-describedby="helpId">
-                    @error('product_name')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="">Unit price</label>
-                    <input type="text" name="unit_price" id="" value="{{$product->unit_price}}" class="form-control" class="@error('unit_price') is-danger @enderror" placeholder="" aria-describedby="helpId">
-                    @error('unit_price')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                   <button class="btn btn-primary" type="submit">Save</button>
-                   <button class="btn btn-default" type="reset">Reset</button>
-                </div>
-            </form>
+
+                <hr class="my-4" />
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-default" type="reset">Reset</button>              
+              </form>
+            </div>
+          </div>
         </div>
-    </div>
-    <!--/.row-->
+ </div>
+                    
+                 
 
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
 @endsection()

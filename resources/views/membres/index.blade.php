@@ -17,7 +17,7 @@
       <form method="post">
       <fieldset>
       <h3 class="text-white col-6 breadcrumb mb-0">Operations
-      <a href="{{url('membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
+      <a href="{{url('membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter un membre">
           <i class="fa fa-plus"></i>
         </a>
         <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
@@ -42,6 +42,8 @@
             <th scope="col">province</th>
             <th scope="col">sexe</th> 
             <th scope="col">mail</th>
+            <th scope="col">Date d'enregistrement</th>
+            <th scope="col">Action</th>
             
           </tr>
         </thead>
@@ -57,7 +59,7 @@
                 <td>{{$membre->nomp}}</td>
                 <td>{{$membre->sexe}}</td> 
                 <td>{{$membre->mail}}</td> 
-               
+                <td>{{$membre->created_at}}</td> 
                 <td>                 
                     <a href="membres/edit/{{$membre->id}}" class="btn btn-primary">Edit</a>                   
                 </td>
@@ -80,12 +82,5 @@
 
 
 
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
+ 
 @endsection()

@@ -17,7 +17,7 @@
 	<!-- Content -->
 @yield('content')
 	<!-- End of content -->
-
+	@include('inc.footer')
 	<!-- Scripts -->
 	@include('inc.scripts')
 	<!-- End of dcripts -->

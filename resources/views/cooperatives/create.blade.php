@@ -68,7 +68,7 @@
                             <div class="alert alert-danger">{{$message}}</div>
                              @enderror
                           </select>                         
-                          <a href="#" class="btn btn-primary">Ajouter une Commune</a>
+                          <a href="{{url('communes/create')}}" class="btn btn-primary">Ajouter une Commune</a>
                         </div>
                     </div>
                  </div>
@@ -96,12 +96,5 @@
                  
                  
           </div>
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
+  
 @endsection()

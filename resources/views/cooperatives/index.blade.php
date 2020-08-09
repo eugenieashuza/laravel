@@ -47,29 +47,29 @@
                 </thead>
                 <tbody>
                 <?php $i=1 ?>
-                    @foreach($cooperatives as $cooperatives)
+                    @foreach($cooperatives as $cooperative)
                     
                     <tr>
                         <td><?= $i ?></td>
-                        <td>{{$cooperatives->nom}}</td>
-                        <td>{{$cooperatives->mail}}</td>
+                        <td>{{$cooperative->nom}}</td>
+                        <td>{{$cooperative->mail}}</td>
 
                         <td>
-                        @if($cooperatives->etat_cooperative == 1)
+                        @if($cooperative->etat_cooperative == 1)
                        
                           Actif
                         @else
                            NonActif
                         @endif
                         </td>
-                        <td>{{$cooperatives->created_at}}</td>
-                        <td>{{$cooperatives->nomc}}</td>
-                        <td>{{$cooperatives->nomp}}</td>
+                        <td>{{$cooperative->created_at}}</td>
+                        <td>{{$cooperative->nomc}}</td>
+                        <td>{{$cooperative->nomp}}</td>
                       
                        
                         <td>
                            <a href="#" class="btn btn-primary">Voir le statut</a>
-                            <a href="cooperatives/edit/{{$cooperatives->id}}" class="btn btn-primary">Edit</a>
+                            <a href="cooperatives/edit/{{$cooperative->id}}" class="btn btn-primary">Edit</a>
                             
                         </td>
                     </tr>
@@ -90,12 +90,5 @@
           </div> -->
  
 
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-    </div> /.row -->
+   
 @endsection()

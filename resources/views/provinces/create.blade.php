@@ -6,7 +6,7 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Ajouter Membre</li>
+            <li class="active">Ajouter Province</li>
         </ol>
     </div>
     <!--/.row-->
@@ -28,62 +28,15 @@
                 <div class="pl-lg-4">
                   <div class="form-row">
                   <div class="form-group">
-                  <form action="{{url('membres')}}"  method="POST" enctype="multipart/form-data"> 
+                  <form action="{{url('provinces')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   <div class="col">
                       <div class="form-group">
-                        <label class="form-control-label" for="mail">nom</label>
+                        <label class="form-control-label" for="nom">nom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom" size="30">
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label class="form-control-label" for="mail">prenom</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="prenom" name="prenom" size="30">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label class="form-control-label" for="mail">mail</label>
-                        <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail" size="30">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label class="form-control-label" for="phone">age</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="age" name="age" size="30" >
-                      </div>
-                    </div>
-                    
-                    <div class="col">
-                       <div class="form-group">
-                         <label for="communes_nom">commune</label>
-                         <select name="communes_id" id="" class="form-control" 
-                               class="@error('communes_id') is-danger @enderror">
-                                <option value="">Select commune</option>
-                                   @foreach($communes as $commune)
-                                <option value="{{$commune->id}}">{{$commune->nom}}</option>
-                               @endforeach
-                                @error('communes_id')
-                            <div class="alert alert-danger">{{$message}}</div>
-                             @enderror
-                          </select>                         
-                          <a href="#" class="btn btn-primary">Ajouter une Commune</a>
-                        </div>
-                    </div>
-                 </div>
-                
-                 <div class="col">
-                    <div class="form-group">                  
-                         <span class="input-group-text">Sexe</span>
-                          <input type="radio" name="gender" value="Feminin">
-                          <label for="gender">Feminin</label>                      
-                          <input type="radio" name="gender" value="Masculin">
-                          <label for="gender-f">Masculin</label>
-                      </div>
-                    </div>
-                </div>
-
+                  
                 <hr class="my-4" />
                 <button class="btn btn-primary" type="submit">Save</button>
                 <button class="btn btn-default" type="reset">Reset</button>              
@@ -95,12 +48,5 @@
                     
                  
 
-    <div class="row">
-        <div class="col-lg-12">
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
-    <div class="col-sm-12">
-        <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-    </div>
-</div><!-- /.row -->
+  
 @endsection()

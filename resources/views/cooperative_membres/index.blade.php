@@ -8,7 +8,7 @@
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Cooperatives</li>
+            <li class="active">Cooperatives et Leurs Membres</li>
         </ol>
     
      
@@ -17,7 +17,7 @@
               <form method="post">
               <fieldset>
               <h3 class="text-white col-6 breadcrumb mb-0">Operations
-              <a href="{{url('cooperatives/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
+              <a href="{{url('cooperative_membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Assossier ">
                   <i class="fa fa-plus"></i>
                 </a>
                 <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
@@ -27,49 +27,47 @@
                
                 </fieldset>
                 </form>  
-            </div>
-      
+            </div>          
             <div class="table-responsive">
               <table class="table align-items-center table-sm table-dark table-flush">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Numero</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Mail</th>
+                    <th scope="col">Nom cooperative</th>
+                    <th scope="col">Nom Membre</th>
                     <!-- <th scope="col">Pseudo</th> -->
-                    <th scope="col">Etat</th>
-                    <th scope="col">Date d'enregistrement</th>
-                    <th scope="col">commune</th>
-                    <th scope="col">province</th>                  
-                    <th scope="col">action</th>
-                    
+                    <th scope="col">Devis en $</th>
+                    <th scope="col">Date d'adesion</th>
+                    <th scope="col">Etat Membre</th>
+                    <th scope="col">Categorie Membre</th>
+                    <th scope="col">Action</th>                                
                   </tr>
                 </thead>
                 <tbody>
                 <?php $i=1 ?>
-                    @foreach($cooperatives as $cooperative )
-                    
+                    @foreach($cooperative_membres as $cooperative_membre )
+
                     <tr>
                         <td><?= $i ?></td>
-                        <td>{{$cooperative->nom}}</td>
-                        <td>{{$cooperative->mail}}</td>
-
+                        <td>{{$cooperative_membre->nomc}}</td>
+                        <td>{{$cooperative_membre->nom}}</td>
+                        <td>{{$cooperative_membre->montant}}</td>
+                        <td>{{$cooperative_membre->date_adesion}}</td>
                         <td>
-                        @if($cooperative->etat_cooperative == 1)
+                        @if($cooperative_membre->etat_membre == 1)
                        
                           Actif
                         @else
                            NonActif
                         @endif
                         </td>
-                        <td>{{$cooperative->created_at}}</td>
-                        <td>{{$cooperative->nomc}}</td>
-                        <td>{{$cooperative->nomp}}</td>
+                        
+                        <td>{{$cooperative_membre->categorie_membre}}</td>
+                     
                       
                        
-                        <td>
-                           <a href="#" class="btn btn-primary">Voir le statut</a>
-                            <a href="cooperatives/edit/{{$cooperative->id}}" class="btn btn-primary">Edit</a>
+                        <td>     
+                            <a href="cooperative_membres/edit/{{$cooperative_membre->id}}" class="btn btn-primary">Edit</a>
                             
                         </td>
                     </tr>

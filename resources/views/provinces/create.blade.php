@@ -10,7 +10,7 @@
         </ol>
     </div>
     <!--/.row-->
-
+      <br><br>
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
@@ -22,7 +22,8 @@
                 
               </div>
             </div>
-          <div class="card-body">
+            <div class="col-lg-1"></div>
+          <div class="card-body col-lg-10 bg-teal">
             
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
@@ -30,16 +31,18 @@
                   <div class="form-group">
                   <form action="{{url('provinces')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
-                  <div class="col">
+                  <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="nom">nom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom" size="30">
                       </div>
                     </div>
                   
-                <hr class="my-4" />
+                <div class="col-lg-10">
                 <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>              
+                <button class="btn btn-default" type="reset">Reset</button>       
+                </div>
+                       
               </form>
             </div>
           </div>

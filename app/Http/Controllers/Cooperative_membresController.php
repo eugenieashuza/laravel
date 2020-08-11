@@ -1,123 +1,109 @@
 <?php
 namespace App\Http\Controllers;
+use App\Cooperative_membre;
 use App\Cooperative;
-use App\Commune;
+use App\Membre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-class CooperativesController extends Controller
+
+class Cooperative_membresController extends Controller
 {
 
     public function index()
     {
-        $cooperatives = DB::table('cooperatives')
-        ->join('communes', 'communes.id', 'cooperatives.id_commune')
-        ->join('provinces', 'provinces.id', 'communes.id')                 
-        ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
-        ->distinct('cooperatives.id')
+        $cooperative_membres = DB::table('cooperative_membres')
+        ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+        ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
+        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))
+         ->distinct('cooperatives.id')
+        //->where('cooperative_membres.etat_membre',1)
         ->get();
        // $text=$cooperatives->statut;
        //$contents = Storage::get('$text');
+    //    $cooperatives2 = DB::table('cooperative_membres')
+    //    ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+    //    ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
+    //    ->select(DB::raw('cooperative_membres.cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))
+    //    // ->distinct('cooperatives.id')
+    //    ->where('cooperative_membres.etat_membre',0)
+    //    ->get();
 
-      return view('cooperatives/index', ['cooperatives'=>$cooperatives]);// 'contents' => $contents]);
+      return view('cooperative_membres/index', ['cooperative_membres' => $cooperative_membres ]);// 'contents' => $contents]);
     }
 
      public function create()
      {
          # code...
-         $communes= Commune::all();
-        return view('cooperatives/create',  ['communes' => $communes]);
+         $membres = Membre::all();
+         $cooperatives = Cooperative::all();
+        return view('cooperative_membres/create',  ['membres' =>  $membres , 'cooperatives' =>  $cooperatives ]);
     }
 
-    public function storecooperatives(Request $request)
+    public function storecooperative_membres(Request $request)
     {
         // Validation
         $request->validate([
-            'nom' => 'required' ,
-            'mail' => 'required' ,
-            'statut' => 'required' ,
-            'phone' => 'required' ,
-            'communes_id' => 'required' ,
-            'actif' => 'required' ,
-            'nom' => 'required'
+            'membre' => 'required' ,
+            'montant' => 'required' ,
+            'date_adesion' => 'required' ,
+            'categorie' => 'required' ,
+            'cooperative' => 'required' ,
+            'etat' => 'required'
         ]);
 
         // $cooperative = DB::table('cooperatives')->where('mail',$request->mail);  
         // if($cooperative == null)
         // {
                
-        $cooperatives = new Cooperative();
-        $cooperatives->telephone = $request->phone;
-        $cooperatives->statut = $request->statut;
-        $cooperatives->mail = $request->mail;
-        $cooperatives->nom = $request->nom;
-        $cooperatives->id_commune = $request->communes_id;
-        $cooperatives->etat_cooperative = $request->actif;
-        $cooperatives->id_user = 1;
-        $cooperatives->save();
+        $cooperatives_membre = new Cooperative_membre();
+        $cooperatives_membre->date_adesion = $request->date_adesion;
+        $cooperatives_membre->montant = $request->montant;
+        $cooperatives_membre->etat_membre = $request->etat;
+        $cooperatives_membre->categorie_membre = $request->categorie;
+        $cooperatives_membre->id_membre = $request->membre;
+        $cooperatives_membre->date_de_sortie = $request->sortie;
+        $cooperatives_membre->id_cooperative = $request->cooperative;     
+        $cooperatives_membre->save();
         //  }
-    //     $path = $request->file('$request->statut')->store(
-    //         '$request->statut', 'public'
-    //  );
-    // asset('storage/avatars/avatar.jpg');
-    // $contents = file_get_contents(storage_path('logs/laravel-2019-10-14.log'));
-        Storage::disk('public')->put('$request->statut', $fileContents);
-        // $cooperatives = DB::table('clients')->where('numero_identite', $request->numero_identite)->first();
-         return redirect('cooperatives');
+    
+         return redirect('cooperative_membres');
     }
 
     // //Dependancy injection (Injection des dependances)
     
-     public function edit(Cooperative $cooperatives)
+     public function edit(Cooperative_membre $cooperative_membre)     
     {
-        $cooperatives = Cooperative::find($cooperatives->id);
-        return view('cooperatives/edit', [
-            'cooperatives' => $cooperatives
-        ]);
+        $membres= Membre::all();
+        $cooperatives= Cooperative::all();
+        $cooperative_membre = Cooperative_membre::find($cooperative_membre->id);
+       return view('cooperative_membres/edit',['cooperative_membre' => $cooperative_membre,'membres' =>  $membres , 'cooperatives' =>  $cooperatives ]);
     }
 
-    public function updatecooperatives(Request $request, Cooperative $cooperatives)
+    public function updatecooperative_membres(Request $request,Cooperative_membre $cooperative_membre)
     {
-        $request->validate([
-            'mail' => 'required' ,
-            'statut' => 'required' ,
-            'phone' => 'required' ,
-            'communes_id' => 'required' ,
-            'nom' => 'required' ,
-            'actif' => 'required'
-        ]);
+      // Validation
+      $request->validate([
+        'membre' => 'required' ,
+        'montant' => 'required' ,
+        'date_adesion' => 'required' ,
+        'categorie' => 'required' ,
+        'cooperative' => 'required' ,
+        'etat' => 'required'
+    ]);
 
-        // $cooperative = DB::table('cooperatives')->where('mail',$request->mail);  
-        // if($cooperative == null)
-        //  {
-               
-        $cooperatives = new Cooperative();
-        $cooperatives->telephone = $request->phone;
-        $cooperatives->statut = $request->statut;
-        $cooperatives->mail = $request->mail;
-        $cooperatives->nom = $request->mail;
-        $cooperatives->id_commune = $request->communes_id;
-        $cooperatives->etat_cooperative = $request->actif;
-        $cooperatives->id_user = 1;
-        $cooperatives->save();
-        //  }
-        return redirect('cooperatives');
+    
+           
+    $cooperative_membre->date_adesion = $request->date_adesion;
+    $cooperative_membre->montant = $request->montant;
+    $cooperative_membre->etat_membre = $request->etat;
+    $cooperative_membre->categorie_membre = $request->categorie;
+    $cooperative_membre->id_membre = $request->membre;
+    $cooperative_membre->date_de_sortie = $request->sortie;
+    $cooperative_membre->id_cooperative = $request->cooperative;     
+    $cooperative_membre->save();
+        return redirect('cooperative_membres');
 
     }
-    public function Count()
-    {
-        # code...
-        $cooperatives = DB::table('cooperatives')
-    }
+    
 
-    public function uploadFilePost(Request $request,$files){
-        $request->validate([
-            'files' => 'required|file|max:50|mimes:jpeg,pdf,txt,odt,png',
-        ]);
-   
-        $fileName = "fileName".time().'.'.request()->fileToUpload->getClientOriginalExtension();
-        $request->fileToUpload->storeAs('uploads',$fileName);
-   
-        return back()
-            ->with('success','Fichier envoyé.');
-    }
+}

@@ -39,7 +39,12 @@
 //     $proprietaire = DB::table('clients')->where('numero_identite', $request->numero_identite)->first();
 //     return redirect('vehicules/new/'.$proprietaire->id);
 //   }
-
+      
+$chart = Charts::database(User::all(), 'bar', 'highcharts')
+    ->setElementLabel("Total")
+    ->setDimensions(1000, 500)
+    ->setResponsive(false)
+    ->groupByDay();
 // }
 
 

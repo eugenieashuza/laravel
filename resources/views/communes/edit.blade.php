@@ -10,7 +10,7 @@
         </ol>
     </div>
     <!--/.row-->
-
+   <br><br>     
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
@@ -22,7 +22,8 @@
                 
               </div>
             </div>
-          <div class="card-body">
+            <div class="col-lg-1"></div>
+          <div class="card-body col-lg-10 bg-teal">
             
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
@@ -31,16 +32,17 @@
                   <form action="/communes/{{$commune->id}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   @method('PUT')
-                  <div class="col">
+                  
+                  <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$commune->nom}}" name="nom" size="30">
                       </div>
                     </div>                  
-                    <div class="col">
+                    <div class="col col-lg-6">
                        <div class="form-group">
                          <label for="provinces_nom">province</label>
-                         <select name="id_province" id="" class="form-control" 
+                         <select name="id_province" class="form-control" 
                                class="@error('provinces_id') is-danger @enderror">
                                 <option value="">Select province</option>
                                    @foreach($provinces as $province)
@@ -55,9 +57,11 @@
                     </div>
                  </div>
 
-                <hr class="my-4" />
-                <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>              
+                <div class="col  col-lg-9">
+                <button class="btn btn-primary" type="submit">Modify</button>
+                <button class="btn btn-default" type="reset">Reset</button>      
+                </div>
+                        
               </form>
             </div>
           </div>

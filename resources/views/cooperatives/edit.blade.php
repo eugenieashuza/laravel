@@ -10,7 +10,7 @@
         </ol>
     </div>
     <!--/.row-->
-
+  <br><br>
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
@@ -22,7 +22,8 @@
                 
               </div>
             </div>
-          <div class="card-body">
+            <div class="col-lg-1"></div>
+          <div class="card-body col-lg-10 bg-teal">
             
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
@@ -30,33 +31,33 @@
                   <div class="form-group">
                   <form action="/cooperatives/{{$cooperative->id}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
-                @method('PUT')
-                  <div class="col">
+                   @method('PUT')
+                  <div class=" col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$cooperative->nom}}" name="nom">
                       </div>
                     </div>
-                  <div class="col">
+                  <div class=" col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="statut">Statut</label>
                         <input type="file" name="statut" value="{{$cooperative->statut}}">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" value="{{$cooperative->mail}}" name="mail">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class=" col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="phone">telephone</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$cooperative->telephone}}" name="phone">
                       </div>
                     </div>
                     
-                    <div class="col">
+                    <div class=" col col-lg-6">
                        <div class="form-group">
                          <label for="communes_nom">commune</label>
                          <select name="communes_id" id="" class="form-control" 
@@ -74,20 +75,29 @@
                     </div>
                  </div>
                 
-                 <div class="col">
+                 <div class=" col col-lg-6">
                     <div class="form-group">                  
                          <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
-                          <input type="radio" name="actif" value="1">
-                          <label for="gender">Actif</label>                      
-                          <input type="radio" name="actif" value="0">
+                         @if($cooperative->etat_cooperative == 1)
+                      <input type="radio" name="actif"  checked="true" value="1">
+                          <label for="gender">Actif</label>
+                          <input type="radio" name="actif" checked=""  value="0">
                           <label for="gender-f">Non Actif</label>
+                          @else
+                          <input type="radio" name="actif"  checked="" value="1">
+                          <label for="gender">Actif</label>
+                          <input type="radio" name="actif" checked="true"  value="0">
+                          <label for="gender-f">Non Actif</label>
+                          @endif                 
                       </div>
                     </div>
                 </div>
 
-                <hr class="my-4" />
-                <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>              
+                <div class=" col col-lg-9">
+                <button class="btn btn-primary" type="submit">Modify</button>
+                <button class="btn btn-default" type="reset">Reset</button> 
+                </div>
+                             
               </form>
             </div>
           </div>

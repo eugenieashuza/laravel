@@ -10,9 +10,9 @@
         </ol>
     </div>
     <!--/.row-->
-
+   <br><br>
     <!-- Page content -->
-    <div class="container-fluid mt--7">
+    <div class="container-fluid  mt--7">
       <div class="row">
 
         <div class="col-xl-8  edit-prifile order-xl-1">
@@ -22,40 +22,42 @@
                 
               </div>
             </div>
-          <div class="card-body">
+            <div class="col-lg-1"></div>
+          <div class="card-body col-lg-10 bg-teal ">
             
                 <h6 class="heading-small text-muted mb-4"> information</h6>
-                <div class="pl-lg-4">
+                <div class="pl-lg-4"> 
                   <div class="form-row">
                   <div class="form-group">
                   <form action="{{url('membres')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
-                  <div class="col">
+
+                  <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom" size="30">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">prenom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="prenom" name="prenom" size="30">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail" size="30">
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="phone">age</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="age" name="age" size="30" >
                       </div>
                     </div>
                     
-                    <div class="col">
+                    <div class="col col-lg-6">
                        <div class="form-group">
                          <label for="communes_nom">commune</label>
                          <select name="communes_id" id="" class="form-control" 
@@ -73,8 +75,9 @@
                     </div>
                  </div>
                 
-                 <div class="col">
-                    <div class="form-group">                  
+                 <div class="col col-lg-6">
+                    <div class="form-group">  
+                    <br>                
                          <span class="input-group-text">Sexe</span>
                           <input type="radio" name="gender" value="Feminin">
                           <label for="gender">Feminin</label>                      
@@ -83,10 +86,13 @@
                       </div>
                     </div>
                 </div>
-
-                <hr class="my-4" />
-                <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-default" type="reset">Reset</button>              
+                <br>
+                <div class="col-lg-10">
+                
+                   <button class="btn btn-primary" type="submit">Save</button>
+                  <button class="btn btn-default" type="reset">Reset</button>      
+                </div>
+                    <br>   
               </form>
             </div>
           </div>

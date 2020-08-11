@@ -18,15 +18,16 @@ class CooperativesController extends Controller
         ->get();
        // $text=$cooperatives->statut;
        //$contents = Storage::get('$text');
+     
 
-      return view('cooperatives/index', ['cooperatives'=>$cooperatives]);// 'contents' => $contents]);
+      return view('cooperatives/index', ['cooperatives' => $cooperatives  ]);// 'contents' => $contents]);
     }
 
      public function create()
      {
          # code...
          $communes= Commune::all();
-        return view('cooperatives/create',  ['communes' => $communes]);
+        return view('cooperatives/create',  [ 'communes' => $communes ]);
     }
 
     public function storecooperatives(Request $request)
@@ -68,15 +69,16 @@ class CooperativesController extends Controller
 
     // //Dependancy injection (Injection des dependances)
     
-     public function edit(Cooperative $cooperatives)
+     public function edit(Cooperative $cooperative)
     {
-        $cooperatives = Cooperative::find($cooperatives->id);
+        $cooperative = Cooperative::find($cooperative->id);
+        $communes = Commune::all();
         return view('cooperatives/edit', [
-            'cooperatives' => $cooperatives
+            'cooperative' => $cooperative ,'communes' => $communes
         ]);
     }
 
-    public function updatecooperatives(Request $request, Cooperative $cooperatives)
+    public function updatecooperatives(Request $request, Cooperative $cooperative)
     {
         $request->validate([
             'mail' => 'required' ,
@@ -91,23 +93,22 @@ class CooperativesController extends Controller
         // if($cooperative == null)
         //  {
                
-        $cooperatives = new Cooperative();
-        $cooperatives->telephone = $request->phone;
-        $cooperatives->statut = $request->statut;
-        $cooperatives->mail = $request->mail;
-        $cooperatives->nom = $request->mail;
-        $cooperatives->id_commune = $request->communes_id;
-        $cooperatives->etat_cooperative = $request->actif;
-        $cooperatives->id_user = 1;
-        $cooperatives->save();
-        //  }
+        $cooperative->telephone = $request->phone;
+        $cooperative->statut = $request->statut;
+        $cooperative->mail = $request->mail;
+        $cooperative->nom = $request->nom;
+        $cooperative->id_commune = $request->communes_id;
+        $cooperative->etat_cooperative = $request->actif;
+        
+        $cooperative->save();
+        
         return redirect('cooperatives');
 
     }
     public function Count()
     {
         # code...
-        $cooperatives = DB::table('cooperatives')
+        $cooperatives = DB::table('cooperatives');
     }
 
     public function uploadFilePost(Request $request,$files){

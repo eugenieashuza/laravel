@@ -4,7 +4,7 @@
 
     <ol class="breadcrumb">
       <li><a href="#">
-            <em class="fa fa-home"></em>
+            <!-- <em class="fa fa-home"></em> -->
         </a></li>
       <li class="active">Acceuil</li>
     </ol>
@@ -22,46 +22,55 @@
 		 -->
 	
 	<!--/.row-->
-
+	<div class="row">
+	<div class="col-md-12">
+	<h1 class="page-header text-center text-primary">Acceuil</h1>
+	</div>
+	</div>
 	<div class="panel panel-container">
 		<div class="row">
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-teal panel-widget border-right">
-					<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-						<div class="large">120</div>
-						<div class="text-muted">Cooperatives</div>
+					<div class="row no-padding"><em class="fa fa-xl fa-calendar color-blue"></em>
+						<div class="large">{{$totalcoop}}</div>
+						<div class="text-muted">Nombre de Cooperatives</div>
+						<div class=""><a href="{{url('cooperatives')}}"><em class="fa fa-xl"></em>Plus</a></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-blue panel-widget border-right">
-					<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-						<div class="large">52</div>
-						<div class="text-muted">Membres</div>
+					<div class="row no-padding"><em class="fa  
+					fa-xl fa-users color-orange"></em>
+						<div class="large">{{$totalmembre}}</div>
+						<div class="text-muted">Nombre de Membres</div>
+						<div class=""><a href="{{url('membres')}}"><em class="fa fa-xl "></em>Plus</a></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-orange panel-widget border-right">
-					<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-						<div class="large">24</div>
-						<div class="text-muted">Provinces</div>
+					<div class="row no-padding"><em class="fa fa-xl fa-book color-teal"></em>
+						<div class="large">{{$totalprov}}</div>
+						<div class="text-muted">Nombre de Provinces</div>
+						<div class=""><a href="{{url('provinces')}}"><em class="fa fa-xl "></em>Plus</a></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-red panel-widget ">
-					<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-						<div class="large">25.2k</div>
-						<div class="text-muted">Communes</div>
+					<div class="row no-padding"><em class="fa fa-xl fa-book color-red"></em>
+						<div class="large">{{$totalcom}}</div>
+						<div class="text-muted">Nombre de Communes</div>
+						<div class=""><a href="{{url('communes')}}"><em class="fa fa-xl fa-add "></em>Plus</a></div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="clear"></div>
 
-         
-		<div class="row">
+    </div>   
+		 <!-- <div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -97,45 +106,76 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
+
 
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>New Orders</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span></div>
+						<h4>Cooperatives Actifs </h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="{{$actifs}}" ><span class="percent">{{$actifs}}%</span></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Comments</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span></div>
+						<h4>Cooperatives Non Actifs</h4>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="{{$nonactifs}}" ><span class="percent">{{$nonactifs}}%</span></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>New Users</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span></div>
+						<h4>Membres Actifs</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="{{$actif_membres}}" ><span class="percent">{{$actif_membres}}%</span></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Visitors</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span></div>
+						<h4>Membres Non Actifs</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="{{$nonactif_membres}}" ><span class="percent">{{$nonactif_membres}}%</span></div>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->
+		</div>
+
+
+		<!-- <div class="col-md-4 col-sm-4 mb">
+          <div class="grey-panel pn donut-chart">
+            <div class="grey-header">
+              <h5>PANNES REUSSIS</h5>
+            </div>
+            <canvas id="serverstatus01" height="120" width="120"></canvas>
+            <script>
+              var doughnutData = [{
+                  value: 40,
+                  color: "#FF6B6B"
+                },
+                {
+                  value: 60,
+                  color: "#fdfdfd"
+                }
+              ];
+              var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+            </script>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6 goleft">
+                <p>valeur<br/> en pourcentage:</p>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <h2>21%</h2>
+              </div>
+            </div>
+          </div>
+        </div> -->
 		
-	</div> 
+	<!-- </div>  -->
 	
- <!-- </div>  -->
+<!-- </div>  -->
 <!--/.main-->
 @endsection()

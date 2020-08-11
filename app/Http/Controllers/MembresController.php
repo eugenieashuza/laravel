@@ -62,16 +62,16 @@ class MembresController extends Controller
     
     }
 
-    public function edit(Membre $membres)
+    public function edit(Membre $membre)
     {
         $communes= Commune::all();
-        $membres = Membre::find($membres->id);
+        $membre = Membre::find($membre->id);
         return view('membres/edit', [
-            'membres' => $membres ,'communes' => $communes
+            'membre' => $membre ,'communes' => $communes
         ]);
     }
 
-    public function updatecooperatives(Request $request, Cooperative $cooperatives)
+    public function updatemembres(Request $request,Membre $membre)
     {
         // Validation
         $request->validate([
@@ -88,9 +88,7 @@ class MembresController extends Controller
 
         //  $membre = DB::table('membres')->where('mail',$request->mail);  
         //  if($membre == null)
-        // {
-               
-            $membre = new Membre();
+        // {                  
             $membre->nom = $request->nom;
             $membre->prenom = $request->prenom;
             $membre->mail = $request->mail;

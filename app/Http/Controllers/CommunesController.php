@@ -46,16 +46,16 @@ class CommunesController extends Controller
 
      //Dependancy injection (Injection des dependances)
     
-     public function edit(Commune $communes)
+     public function edit(Commune $commune)
      {
         $provinces =  Province::all();
-        $communes = Commune::find($communes->id);
+        $commune = Commune::find($commune->id);
          return view('communes/edit', [
-             'communes' => $communes , ' provinces' =>  $provinces
+             'commune' => $commune , 'provinces' =>  $provinces
          ]);
      }
  
-     public function updatecommunes(Request $request, Commune $communes)
+     public function updatecommunes(Request $request, Commune $commune)
      {
          // Validation
          $request->validate([
@@ -65,9 +65,9 @@ class CommunesController extends Controller
         //  $commune= DB::table('communes')->where('nom',$request->nom);  
         //  if( $commune == null)
         //   {
-         $communes->nom = $request->nom;
-         $communes->id_province = $request->id_province;
-         $communes->save();
+         $commune->nom = $request->nom;
+         $commune->id_province = $request->id_province;
+         $commune->save();
         //   }
          return redirect('communes');
      }

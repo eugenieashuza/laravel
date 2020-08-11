@@ -51,7 +51,16 @@ Route::put('communes/{commune}', 'CommunesController@updatecommunes');
 Route::get('provinces', 'ProvincesController@index');
 Route::get('provinces/create', 'ProvincesController@create');
 Route::post('provinces', 'ProvincesController@storeprovinces');
-Route::get('provinces/edit/{member}', 'ProvincesController@edit');
-Route::put('provinces/{member}', 'ProvincesController@updateprovinces');
+Route::get('provinces/edit/{province}', 'ProvincesController@edit');
+Route::put('provinces/{province}', 'ProvincesController@updateprovinces');
 
 
+//cooperatives_membre  RESTFUL APIS (CRU Operations)
+Route::get('cooperative_membres', 'Cooperative_membresController@index');
+Route::get('cooperative_membres/create', 'Cooperative_membresController@create');
+Route::post('cooperative_membres', 'Cooperative_membresController@storecooperative_membres');
+Route::get('cooperative_membres/edit/{cooperative_membre}', 'Cooperative_membresController@edit');
+Route::put('cooperative_membres/{cooperative_membre}', 'Cooperative_membresController@updatecooperative_membres');
+
+//statistiques
+Route::get('statistiques', 'StatistiquesController@index');

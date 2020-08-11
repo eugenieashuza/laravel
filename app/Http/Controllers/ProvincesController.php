@@ -39,27 +39,24 @@ class ProvincesController extends Controller
 
      //Dependancy injection (Injection des dependances)
     
-     public function edit(Province $provinces)
+     public function edit(Province $province)
      {
-        $provinces = Province::find($provinces->id);
+        $provinces = Province::find($province->id);
          return view('provinces/edit', [
              'provinces' => $provinces
          ]);
      }
  
-     public function updateprovinces(Request $request, Province $provinces)
+     public function updateprovinces(Request $request, Province $province)
      {
          // Validation
          $request->validate([
-             'nom' => 'required' ,
-            
+             'nom' => 'required' ,  
          ]);
-        //  $province= DB::table('provinces')->where('nom',$request->nom);  
-        //  if( $province == null)
-        //   {
-         $provinces->nom = $request->nom;
-         $provinces->save();
-        //   }
+       
+         $province->nom = $request->nom;
+         $province->save();
+        
          return redirect('provinces');
      }
  

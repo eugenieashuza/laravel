@@ -32,8 +32,8 @@ class MembresController extends Controller
     {
         // Validation
         $request->validate([
-            'mail' => 'required' ,
-            'nom' => 'required' ,
+            'mail' => 'required|unique:membres' ,
+            'nom' => 'required|unique:membres' ,
             'prenom' => 'required' ,
             'communes_id' => 'required' ,
             'gender' => 'required',
@@ -75,8 +75,8 @@ class MembresController extends Controller
     {
         // Validation
         $request->validate([
-            'mail' => 'required' ,
-            'nom' => 'required' ,
+            'mail' => 'required|unique:membres' ,
+            'nom' => 'required|unique:membres' ,
             'prenom' => 'required' ,
             'communes_id' => 'required' ,
             'gender' => 'required',
@@ -101,5 +101,21 @@ class MembresController extends Controller
         //  }
          return redirect('membres');
     }
+
+    public function search(){
+        # code...
+        $q = request()->input('q');
+       //  dd($q);
+       $membres = DB::table('membres')
+        ->join('communes', 'communes.id', 'membres.id_commune')
+        ->join('provinces', 'provinces.id', 'communes.id')                 
+        ->select(DB::raw('membres.id,membres.nom,membres.mail,membres.prenom,membres.sexe,membres.created_at,membres.age,communes.nom as nomc,provinces.nom as nomp'))
+        -> where('membres.nom', 'like' ,"%$q%") 
+        -> orwhere('membres.prenom', 'like' ,"%$q%") 
+        ->get();
+     
+       return view('membres/index' ,['membres' => $membres ]);
+   }
+
 
 }

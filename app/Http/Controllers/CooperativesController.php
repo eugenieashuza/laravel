@@ -13,7 +13,7 @@ class CooperativesController extends Controller
         $cooperatives = DB::table('cooperatives')
         ->join('communes', 'communes.id', 'cooperatives.id_commune')
         ->join('provinces', 'provinces.id', 'communes.id')                 
-        ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
+        ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.telephone,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
         ->distinct('cooperatives.id')
         ->get();
        // $text=$cooperatives->statut;
@@ -34,38 +34,33 @@ class CooperativesController extends Controller
     {
         // Validation
         $request->validate([
-            'nom' => 'required' ,
-            'mail' => 'required' ,
-            'statut' => 'required' ,
-            'phone' => 'required' ,
+            'nom' => 'required|unique:cooperatives' ,
+            'mail' => 'required|unique:cooperatives' ,
+            'statut' => 'required|unique:cooperatives' ,
+            'telephone' => 'required|unique:cooperatives' ,
             'communes_id' => 'required' ,
             'actif' => 'required' ,
             'nom' => 'required'
         ]);
 
-        // $cooperative = DB::table('cooperatives')->where('mail',$request->mail);  
-        // if($cooperative == null)
-        // {
+        $filename = time().'.'.$request->statut->getClientOriginalExtension();
+        $request->statut->move('storage/', $filename);        
+      
                
         $cooperatives = new Cooperative();
-        $cooperatives->telephone = $request->phone;
-        $cooperatives->statut = $request->statut;
+        $cooperatives->statut =  $filename;
+        $cooperatives->telephone = $request->telephone;       
         $cooperatives->mail = $request->mail;
         $cooperatives->nom = $request->nom;
         $cooperatives->id_commune = $request->communes_id;
         $cooperatives->etat_cooperative = $request->actif;
         $cooperatives->id_user = 1;
-        $cooperatives->save();
-        //  }
-    //     $path = $request->file('$request->statut')->store(
-    //         '$request->statut', 'public'
-    //  );
-    // asset('storage/avatars/avatar.jpg');
-    // $contents = file_get_contents(storage_path('logs/laravel-2019-10-14.log'));
-        Storage::disk('public')->put('$request->statut', $fileContents);
-        // $cooperatives = DB::table('clients')->where('numero_identite', $request->numero_identite)->first();
+       
+         
+         $cooperatives->save();  
          return redirect('cooperatives');
     }
+
 
     // //Dependancy injection (Injection des dependances)
     
@@ -81,19 +76,19 @@ class CooperativesController extends Controller
     public function updatecooperatives(Request $request, Cooperative $cooperative)
     {
         $request->validate([
-            'mail' => 'required' ,
-            'statut' => 'required' ,
-            'phone' => 'required' ,
+            'mail' => 'required|unique:cooperatives' ,
+            'statut' => 'required|unique:cooperatives' ,
+            'telephone' => 'required|unique:cooperatives' ,
             'communes_id' => 'required' ,
             'nom' => 'required' ,
             'actif' => 'required'
         ]);
 
-        // $cooperative = DB::table('cooperatives')->where('mail',$request->mail);  
-        // if($cooperative == null)
-        //  {
-               
-        $cooperative->telephone = $request->phone;
+        $filename = time().'.'.$request->statut->getClientOriginalExtension();
+        $request->statut->move('storage/', $filename);        
+      
+
+        $cooperative->telephone = $request->telephone;
         $cooperative->statut = $request->statut;
         $cooperative->mail = $request->mail;
         $cooperative->nom = $request->nom;
@@ -105,40 +100,37 @@ class CooperativesController extends Controller
         return redirect('cooperatives');
 
     }
-    public function Count()
+    
+    public function search()
     {
         # code...
-        $cooperatives = DB::table('cooperatives');
+        $q = request()->input('q');
+       //  dd($q);
+       $cooperatives = DB::table('cooperatives') 
+       ->join('communes', 'communes.id', 'cooperatives.id_commune')
+        ->join('provinces', 'provinces.id', 'communes.id')                 
+        ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.telephone,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
+        ->distinct('cooperatives.id')
+       -> where('cooperatives.nom', 'like' ,"%$q%")      
+       ->get();
+       return view('cooperatives/index' ,['cooperatives' => $cooperatives ]);
+   }
+
+    public function show($id)
+    {
+        # code...
+        $cooperatives = Cooperative::find($id);
+        return view('cooperatives.details',['cooperatives' => $cooperatives]);
+
+    }
+    public function download($file)
+    {
+        # code...
+        return response()->download('storage/'.$file);
     }
 
-    public function uploadFilePost(Request $request,$files){
-        $request->validate([
-            'files' => 'required|file|max:50|mimes:jpeg,pdf,txt,odt,png',
-        ]);
-   
-        $fileName = "fileName".time().'.'.request()->fileToUpload->getClientOriginalExtension();
-        $request->fileToUpload->storeAs('uploads',$fileName);
-   
-        return back()
-            ->with('success','Fichier envoyé.');
-    }
+    
 
-    public function uploadFile(Request $request){
- 
-        $url = Storage::url('fileToUpload');
-        $path = Storage::disk('public')->path('files');
-     
-        $files_with_size = array();
-        $files = Storage::files('uploads');
-        foreach ($files as $key => $file) {
-          $files_with_size[$key]['name'] = $file;
-        }
-     
-        return view('uploadfile', [
-            'files' => $files,
-            'url' => $url,
-            'path' => $path
-          ]);
-        }
+    
 
 }

@@ -1,5 +1,8 @@
 @extends('templates.default_layout')
 @section('content')
+
+
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -31,28 +34,49 @@
                   <div class="form-group">
                   <form action="{{url('cooperatives')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
+                  
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('nom')) has-error @endif ">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom">
+                        @if($errors->get('nom'))
+                           @foreach($errors->get('nom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('statut')) has-error @endif">
                         <label class="form-control-label" for="statut">Statut</label>
-                        <input type="file" name="statut">
+                        <input type="file" name="statut" value="Submit">
+                        @if($errors->get('statut'))
+                           @foreach($errors->get('statut') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('mail')) has-error @endif">
                         <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" placeholder="mail" name="mail">
+                        @if($errors->get('mail'))
+                           @foreach($errors->get('mail') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('telephone')) has-error @endif">
                         <label class="form-control-label" for="phone">telephone</label>
-                        <input type="text" class="form-control form-control-alternative" placeholder="Numero" name="phone">
+                        <input type="text" class="form-control form-control-alternative" placeholder="Numero" name="telephone">
+                        @if($errors->get('telephone'))
+                           @foreach($errors->get('telephone') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     
@@ -75,12 +99,17 @@
                  </div>
                 
                  <div class="col col-lg-6">
-                    <div class="form-group">                  
+                    <div class="form-group @if($errors->get('actif')) has-error @endif">                  
                          <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
                           <input type="radio" name="actif" value="1">
                           <label for="gender">Actif</label>                      
                           <input type="radio" name="actif" value="0">
                           <label for="gender-f">Non Actif</label>
+                          @if($errors->get('actif'))
+                           @foreach($errors->get('actif') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                 </div>

@@ -42,13 +42,20 @@ class Cooperative_membresController extends Controller
     public function storecooperative_membres(Request $request)
     {
         // Validation
+        $dt = new DateTime();
+        $dt->format('Y-m-d');
         $request->validate([
             'membre' => 'required' ,
-            'montant' => 'required' ,
-            'date_adesion' => 'required' ,
-            'categorie' => 'required' ,
-            'cooperative' => 'required' ,
+            'montant' => ['required', 'numeric', 'min:1'],
+            'date_adesion' =>  ['required', 'numeric', 'min:' .date('Y-m-d')],
+            'categorie' => ['required', 'string'] ,
+            'cooperative' => 'required',
             'etat' => 'required'
+            // 'year' => ['required', 'numeric', 'min:' . date('Y-m-d')],
+            // 'description' => ['required', 'string', 'max:500'],
+            // {{ date('Y-m-d H:i:s') }};
+            // {{  now()->toDateTimeString('Y-m-d') }}
+            
         ]);
 
         // $cooperative = DB::table('cooperatives')->where('mail',$request->mail);  
@@ -89,10 +96,7 @@ class Cooperative_membresController extends Controller
         'categorie' => 'required' ,
         'cooperative' => 'required' ,
         'etat' => 'required'
-    ]);
-
-    
-           
+    ]);       
     $cooperative_membre->date_adesion = $request->date_adesion;
     $cooperative_membre->montant = $request->montant;
     $cooperative_membre->etat_membre = $request->etat;
@@ -104,6 +108,24 @@ class Cooperative_membresController extends Controller
         return redirect('cooperative_membres');
 
     }
+
+    public function search()
+    {
+        # code...
+        $q = request()->input('q');
+       //  dd($q);
+       $cooperative_membres = DB::table('cooperative_membres')
+        ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+        ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
+        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))
+        ->distinct('cooperatives.id')
+        ->where('nom', 'like' ,"%$q%")   
+        ->orwhere('nomc', 'like' ,"%$q%")  
+       ->get();
+ 
+       return view('cooperative_membres/index',['cooperative_membres' => $cooperative_membres ]);
+   }
+    
     
 
 }

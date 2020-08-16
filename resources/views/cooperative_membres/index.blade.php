@@ -2,14 +2,16 @@
 @section('content')
 
 
-  <div  class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
         <ol class="breadcrumb">
             <li><a href="#">
                     <em class="fa fa-home"></em>
                 </a></li>
             <li class="active">Cooperatives et Leurs Membres</li>
-        </ol>
+         </ol>
+        </div>
+        
     
      
       <div class="card-header row add-element-box bg-transparent ">
@@ -27,7 +29,19 @@
                
                 </fieldset>
                 </form>  
-            </div>          
+            </div>  
+     <form action="#" class="d-flex mr-3">
+        <br><br>
+             <div class="input-group custom-search-form navbar-right col-lg-2">
+                   <input type="text" class="search_btn" name="q" placeholder="Search..." value="{{ request()->q ?? '' }}">
+                   <span class="input-group-btn  ">
+                        <button class="btn bg-teal search_btn" type="submit">
+                            <em class="fa fa-search"> </em>
+                        </button>
+                   </span>
+            </div>
+            <br><br>
+    </form>  
             <div class="table-responsive">
               <table class="table align-items-center table-sm table-dark table-flush">
                 <thead class="thead-dark">
@@ -86,7 +100,5 @@
                             <span><?php // //$Encad->NomEncad ?></span>
                           </div>
           </div> -->
- 
-
    
 @endsection()

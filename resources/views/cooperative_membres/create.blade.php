@@ -19,7 +19,7 @@
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
-                
+              
               </div>
             </div>
             <div class="col-lg-1"></div>
@@ -28,35 +28,50 @@
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
                   <div class="form-row">
-                  <div class="form-group">
+                  <div class="form-group ">
                   <form action="{{url('cooperative_membres')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('date_adesion')) has-error @endif">
                         <label class="form-control-label" for="mail">Date d'adesion</label>
                         <input type="date" class="form-control form-control-alternative"  name="date_adesion">
+                        @if($errors->get('date_adesion'))
+                           @foreach($errors->get('date_adesion') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('montant')) has-error @endif">
                         <label class="form-control-label" for="statut">montant versé</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="montant" name="montant">
+                        @if($errors->get('montant'))
+                           @foreach($errors->get('montant') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('categorie')) has-error @endif">
                         <label class="form-control-label" for="mail">categorie Membre</label>
                         <input type="mail" class="form-control form-control-alternative" placeholder="categorie" name="categorie">
+                        @if($errors->get('categorie'))
+                           @foreach($errors->get('categorie') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group ">
                         <label class="form-control-label" for="phone">Date de sortie</label>
                         <input type="date" class="form-control form-control-alternative" placeholder="Numero" name="sortie">
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                       <div class="form-group">
+                       <div class="form-group @if($errors->get('membre')) has-error @endif">
                          <label for="membre_id">Membre</label>
                          <select name="membre" id="" class="form-control" 
                                class="@error('membre') is-danger @enderror">
@@ -74,7 +89,7 @@
                  </div>
                     
                     <div class="col col-lg-6">
-                       <div class="form-group">
+                       <div class="form-group @if($errors->get('cooperative')) has-error @endif">
                          <label for="cooperative">cooperative</label>
                          <select name="cooperative" id="" class="form-control" 
                                class="@error('cooperative') is-danger @enderror">
@@ -92,12 +107,17 @@
                  </div>
                 
                  <div class="col col-lg-6">
-                    <div class="form-group">                  
+                    <div class="form-group @if($errors->get('etat')) has-error @endif">                  
                          <span class="input-group-text">Etat du membre:&nbsp&nbsp</span>
                           <input type="radio" name="etat" value="1">
                           <label for="">Actif</label>                      
                           <input type="radio" name="etat" value="0">
                           <label for="">Non Actif</label>
+                          @if($errors->get('etat'))
+                           @foreach($errors->get('etat') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                 </div>

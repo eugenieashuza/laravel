@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-custom navbar-fixed-top navbar_position " role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
@@ -13,9 +13,9 @@
 				 Choix d'action <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>            
 				<ul class="children collapse  nav menu" id="sub-item-1">
-					<li><a class="" href="#">
+					<li class="side_menu"><a class="" href="#">
                     <em class="fa fa-user ">&nbsp</em>Profil
-					<li><a class="" href="#">
+					<li class="side_menu"><a class="" href="{{ route('logout') }}">
                     <em  class="fa fa-power-off">&nbsp</em>Deconnexion
 					</a></li>
 				</ul>

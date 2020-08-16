@@ -23,16 +23,16 @@
 	
 	<!--/.row-->
 	<div class="row">
-	<div class="col-md-12">
-	<h1 class="page-header text-center text-primary">Acceuil</h1>
-	</div>
+	   <div class="col-md-12">
+	     <h1 class="page-header text-center text-primary">Acceuil</h1>
+	   </div>
 	</div>
 	<div class="panel panel-container">
 		<div class="row">
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-teal panel-widget border-right">
 					<div class="row no-padding"><em class="fa fa-xl fa-calendar color-blue"></em>
-						<div class="large">{{$totalcoop}}</div>
+						<div class="large">{{$totalcoop }}</div>
 						<div class="text-muted">Nombre de Cooperatives</div>
 						<div class=""><a href="{{url('cooperatives')}}"><em class="fa fa-xl"></em>Plus</a></div>
 					</div>
@@ -42,7 +42,7 @@
 				<div class="panel panel-blue panel-widget border-right">
 					<div class="row no-padding"><em class="fa  
 					fa-xl fa-users color-orange"></em>
-						<div class="large">{{$totalmembre}}</div>
+						<div class="large">{{$totalmembre }}</div>
 						<div class="text-muted">Nombre de Membres</div>
 						<div class=""><a href="{{url('membres')}}"><em class="fa fa-xl "></em>Plus</a></div>
 					</div>
@@ -60,7 +60,7 @@
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-red panel-widget ">
 					<div class="row no-padding"><em class="fa fa-xl fa-book color-red"></em>
-						<div class="large">{{$totalcom}}</div>
+						<div class="large">{{$totalcom }}</div>
 						<div class="text-muted">Nombre de Communes</div>
 						<div class=""><a href="{{url('communes')}}"><em class="fa fa-xl fa-add "></em>Plus</a></div>
 					</div>
@@ -69,7 +69,8 @@
 		</div>
 		<div class="clear"></div>
 
-    </div>   
+	</div> 
+	<div class="clear"></div>  
 		 <!-- <div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -114,7 +115,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
 						<h4>Cooperatives Actifs </h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="{{$actifs}}" ><span class="percent">{{$actifs}}%</span></div>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="{{$actifs}}" ><span class="percent">{{$actifs ?? ''}}%</span></div>
 					</div>
 				</div>
 			</div>
@@ -122,7 +123,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
 						<h4>Cooperatives Non Actifs</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="{{$nonactifs}}" ><span class="percent">{{$nonactifs}}%</span></div>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="{{$nonactifs}}" ><span class="percent">{{$nonactifs ?? ''}}%</span></div>
 					</div>
 				</div>
 			</div>
@@ -130,7 +131,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
 						<h4>Membres Actifs</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="{{$actif_membres}}" ><span class="percent">{{$actif_membres}}%</span></div>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="{{$actif_membres}}" ><span class="percent">{{$actif_membres ?? ''}}%</span></div>
 					</div>
 				</div>
 			</div>
@@ -138,7 +139,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
 						<h4>Membres Non Actifs</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="{{$nonactif_membres}}" ><span class="percent">{{$nonactif_membres}}%</span></div>
+						<div class="easypiechart" id="easypiechart-red" data-percent="{{$nonactif_membres}}" ><span class="percent">{{$nonactif_membres ?? ''}}%</span></div>
 					</div>
 				</div>
 			</div>

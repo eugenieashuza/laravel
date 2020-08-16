@@ -34,31 +34,47 @@
               @method('PUT')
 
               <div class="col col-lg-6">
-                  <div class="form-group">
+                  <div class="form-group  @if($errors->get('date_adesion')) has-error @endif ">
                     <label class="form-control-label" for="mail">Date d'adesion</label>
                     <input type="date" class="form-control form-control-alternative"  name="date_adesion" value="{{$cooperative_membre->date_adesion}}">
+                    @if($errors->get('date_adesion'))
+                           @foreach($errors->get('date_adesion') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif 
                   </div>
                 </div>
               <div class="col col-lg-6">
-                  <div class="form-group">
+                  <div class="form-group  @if($errors->get('montant')) has-error @endif">
                     <label class="form-control-label" for="statut">montant versé</label>
                     <input type="text" class="form-control form-control-alternative" placeholder="montant" name="montant" value="{{$cooperative_membre->montant}}">
+                    @if($errors->get('montant'))
+                           @foreach($errors->get('montant') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif 
                   </div>
                 </div>
                 <div class="col col-lg-6">
-                  <div class="form-group">
+                  <div class="form-group  @if($errors->get('categorie')) has-error @endif">
                     <label class="form-control-label" for="mail">categorie Membre</label>
                     <input type="mail" class="form-control form-control-alternative" placeholder="categorie" name="categorie" value="{{$cooperative_membre->categorie_membre}}">
+                    @if($errors->get('categorie'))
+                           @foreach($errors->get('categorie') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                   </div>
                 </div>
                 <div class="col col-lg-6">
-                  <div class="form-group">
+                  <div class="form-group  ">
                     <label class="form-control-label" for="phone">Date de sortie</label>
                     <input type="date" class="form-control form-control-alternative" placeholder="Numero" name="sortie" value="{{$cooperative_membre->date_de_sortie}}">
+                   
                   </div>
                 </div>
                 <div class="col col-lg-6">
-                   <div class="form-group">
+                   <div class="form-group  @if($errors->get('membre')) has-error @endif">
                      <label for="membre_id">Membre</label>
                      <select name="membre" id="" class="form-control" 
                            class="@error('membre') is-danger @enderror">
@@ -76,7 +92,7 @@
              </div>
                 
                 <div class="col col-lg-6">
-                   <div class="form-group">
+                   <div class="form-group  @if($errors->get('cooperative')) has-error @endif">
                      <label for="cooperative">cooperative</label>
                      <select name="cooperative" id="" class="form-control" 
                            class="@error('cooperative') is-danger @enderror">
@@ -94,12 +110,17 @@
              </div>
             
              <div class="col col-lg-6">
-                <div class="form-group">                  
+                <div class="form-group  @if($errors->get('etat')) has-error @endif">                  
                      <span class="input-group-text">Etat du membre:&nbsp&nbsp</span>
                       <input type="radio" name="etat" value="1">
                       <label for="">Actif</label>                      
                       <input type="radio" name="etat" value="0">
                       <label for="">Non Actif</label>
+                      @if($errors->get('etat'))
+                           @foreach($errors->get('etat') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                   </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ class ProvincesController extends Controller
 
     public function index()
     {
-        $provinces = Province::all();
+        $provinces = DB::table('provinces')->simplePaginate(2);
 
         return view('provinces/index', [
             'provinces' => $provinces ]);
@@ -25,7 +25,7 @@ class ProvincesController extends Controller
     {
         // Validation
         $request->validate([
-            'nom' => 'required'
+            'nom' => 'required|unique:provinces'
         ]);
         // $prov= DB::table('provinces')->where('nom',$request->nom);  
         //  if( $prov == null)
@@ -34,7 +34,10 @@ class ProvincesController extends Controller
         $provinces->nom = $request->nom;    
         $provinces->save();
         //   }
-        return redirect('provinces');
+        return redirect('provinces')->withFlashMessage('Created Successfully.');
+        //->with('Success', 'Insertion avec success');
+        // 'year' => ['required', 'numeric', 'min:1950', 'max:' . date('Y')],
+        //     'description' => ['required', 'string', 'max:500'],
     }
 
      //Dependancy injection (Injection des dependances)
@@ -51,7 +54,7 @@ class ProvincesController extends Controller
      {
          // Validation
          $request->validate([
-             'nom' => 'required' ,  
+             'nom' => 'required|unique:provinces' ,  
          ]);
        
          $province->nom = $request->nom;
@@ -59,5 +62,21 @@ class ProvincesController extends Controller
         
          return redirect('provinces');
      }
+
+      public function search(){
+         # code...
+         $q = request()->input('q');
+        //  dd($q);
+        $provinces = DB::table('provinces')   
+        -> where('nom', 'like' ,"%$q%") 
+        ->simplePaginate(2);
+        
+    //   $communes = Commune::where('nom', 'like' ,"%$q%")   
+    //     // ->orwhere()
+    //     ->paginate(6);
+
+        // return view('communes.search')->with('communes' => $communes);
+        return view('provinces/index' ,['provinces' => $provinces ]);
+    }
  
 }

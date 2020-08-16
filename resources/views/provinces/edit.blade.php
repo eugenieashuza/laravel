@@ -34,9 +34,14 @@
                    @method('PUT')
                    
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('nom')) has-error @endif">
                         <label class="form-control-label" for="nom">nom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$provinces->nom}}" name="nom" size="30">
+                        @if($errors->get('nom'))
+                           @foreach($errors->get('nom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                   

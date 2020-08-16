@@ -33,32 +33,52 @@
                   @method('PUT')
                   
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('nom')) has-error @endif">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$membre->nom}}" name="nom" >
+                        @if($errors->get('nom'))
+                           @foreach($errors->get('nom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('prenom')) has-error @endif">
                         <label class="form-control-label" for="mail">prenom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$membre->prenom}}" name="prenom" >
+                        @if($errors->get('prenom'))
+                           @foreach($errors->get('prenom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('mail')) has-error @endif">
                         <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" value="{{$membre->mail}}" name="mail" >
+                        @if($errors->get('mail'))
+                           @foreach($errors->get('mail') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('age')) has-error @endif">
                         <label class="form-control-label" for="phone">age</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$membre->age}}" name="age"  >
+                        @if($errors->get('age'))
+                           @foreach($errors->get('age') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     
                     <div class="col col-lg-6">
-                       <div class="form-group">
+                       <div class="form-group  @if($errors->get('commune')) has-error @endif">
                          <label for="communes_nom">commune</label>
                          <select name="communes_id" id="" class="form-control" 
                                class="@error('communes_id') is-danger @enderror">
@@ -76,12 +96,17 @@
                  </div>
                 
                  <div class="col col-lg-6">
-                    <div class="form-group">                  
+                    <div class="form-group  @if($errors->get('gender')) has-error @endif">                  
                          <span class="input-group-text">Sexe</span>
                           <input type="radio" name="gender" value="Feminin">
                           <label for="gender">Feminin</label>                      
                           <input type="radio" name="gender" value="Masculin">
                           <label for="gender-f">Masculin</label>
+                          @if($errors->get('gender'))
+                           @foreach($errors->get('gender') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                 </div>

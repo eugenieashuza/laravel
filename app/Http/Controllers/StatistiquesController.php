@@ -22,6 +22,7 @@ class StatistiquesController extends Controller
         ->count();
         $totalcom = DB::table('communes')
         ->count();
+        $totalcommune = Commune::all();
        $totalcoop = DB::table('cooperatives')
        ->count();
         $actif = DB::table('cooperatives')
@@ -53,9 +54,11 @@ class StatistiquesController extends Controller
         $nonactif_membres = $nonactif_membres * 100;
         $nonactif_membres = round($nonactif_membres, 2);
 
+
+
         return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,'totalcoop' =>  $totalcoop ,
         'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,'totalmembre' =>  $totalmembre ,
-        'actif_membres' => $actif_membres , 'nonactif_membres' =>  $nonactif_membres ]);
+        'actif_membres' => $actif_membres , 'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ]);
     }
 
 

@@ -14,8 +14,9 @@ class CommunesController extends Controller
         ->select(DB::raw('communes.id,communes.nom,communes.created_at,provinces.nom as province'))
         ->distinct('communes.id')
         ->get();
-        return view('communes/index', [
-            'communes' => $communes ]);
+        // return view('communes/index',compact('$communes'))->withuser($commune); 
+         return view('communes/index', ['communes' => $communes ]); 
+
     }
 
     public function create()
@@ -29,7 +30,7 @@ class CommunesController extends Controller
     {
         // Validation
         $request->validate([
-            'nom' => 'required' ,
+            'nom' => 'required|unique:communes' ,
             'id_province' => 'required'
 
         ]);
@@ -59,7 +60,7 @@ class CommunesController extends Controller
      {
          // Validation
          $request->validate([
-             'nom' => 'required' ,
+             'nom' => 'required|unique:communes' ,
              'id_province' => 'required'
          ]);
         //  $commune= DB::table('communes')->where('nom',$request->nom);  
@@ -71,5 +72,22 @@ class CommunesController extends Controller
         //   }
          return redirect('communes');
      }
+     public function search()
+     {
+         # code...
+         $q = request()->input('q');
+        //  dd($q);
+        $communes = DB::table('communes')  
+        ->join('provinces', 'provinces.id', 'communes.id')                 
+        ->select(DB::raw('communes.id,communes.nom,communes.created_at,provinces.nom as province'))  
+        -> where('communes.nom', 'like' ,"%$q%") 
+        ->get();
+    //   $communes = Commune::where('nom', 'like' ,"%$q%")   
+    //     // ->orwhere()
+    //     ->paginate(6);
+
+        // return view('communes.search')->with('communes' => $communes);
+        return view('communes/index' ,['communes' => $communes]);
+    }
  
 }

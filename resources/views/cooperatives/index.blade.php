@@ -28,7 +28,19 @@
                 </fieldset>
                 </form>  
             </div>
-      
+
+        <form action="{{route('cooperatives.search')}}" class="d-flex mr-3">
+            <br><br>
+             <div class="input-group custom-search-form navbar-right col-lg-2">
+                   <input type="text" class="search_btn" name="q" placeholder="Search..." value="{{ request()->q ?? '' }}">
+                   <span class="input-group-btn  ">
+                        <button class="btn bg-teal search_btn" type="submit">
+                            <em class="fa fa-search"> </em>
+                        </button>
+                   </span>
+            </div>
+            <br><br>
+       </form>  
             <div class="table-responsive">
               <table class="table align-items-center table-sm table-dark table-flush">
                 <thead class="thead-dark">
@@ -36,7 +48,7 @@
                     <th scope="col">Numero</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Mail</th>
-                    <!-- <th scope="col">Pseudo</th> -->
+                    <th scope="col">tel</th>
                     <th scope="col">Etat</th>
                     <th scope="col">Date d'enregistrement</th>
                     <th scope="col">commune</th>
@@ -53,7 +65,7 @@
                         <td><?= $i ?></td>
                         <td>{{$cooperative->nom}}</td>
                         <td>{{$cooperative->mail}}</td>
-
+                        <td>{{$cooperative->telephone}}</td>
                         <td>
                         @if($cooperative->etat_cooperative == 1)
                        
@@ -68,7 +80,8 @@
                       
                        
                         <td>
-                           <a href="#" class="btn btn-primary">Voir le statut</a>
+                           <a href="cooperatives/{{$cooperative->id}}" class="btn btn-primary">Voir le statut</a>
+                           <a href="cooperatives/download/{{$cooperative->statut}}" class="btn btn-primary">Down</a>
                             <a href="cooperatives/edit/{{$cooperative->id}}" class="btn btn-primary">Edit</a>
                             
                         </td>
@@ -88,7 +101,6 @@
                             <span><?php // //$Encad->NomEncad ?></span>
                           </div>
           </div> -->
- 
 
    
 @endsection()

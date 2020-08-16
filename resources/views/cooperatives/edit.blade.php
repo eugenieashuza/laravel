@@ -28,37 +28,57 @@
                 <h6 class="heading-small text-muted mb-4"> information</h6>
                 <div class="pl-lg-4">
                   <div class="form-row">
-                  <div class="form-group">
+                  <div class="form-group  @if($errors->get('actif')) has-error @endif">
                   <form action="/cooperatives/{{$cooperative->id}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                    @method('PUT')
                   <div class=" col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('nom')) has-error @endif">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$cooperative->nom}}" name="nom">
+                        @if($errors->get('nom'))
+                           @foreach($errors->get('nom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                   <div class=" col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('statut')) has-error @endif">
                         <label class="form-control-label" for="statut">Statut</label>
                         <input type="file" name="statut" value="{{$cooperative->statut}}">
+                        @if($errors->get('statut'))
+                           @foreach($errors->get('statut') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('mail')) has-error @endif">
                         <label class="form-control-label" for="mail">mail</label>
                         <input type="mail" class="form-control form-control-alternative" value="{{$cooperative->mail}}" name="mail">
+                        @if($errors->get('mail'))
+                           @foreach($errors->get('mail') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     <div class=" col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group  @if($errors->get('telephone')) has-error @endif">
                         <label class="form-control-label" for="phone">telephone</label>
                         <input type="text" class="form-control form-control-alternative" value="{{$cooperative->telephone}}" name="phone">
+                        @if($errors->get('telephone'))
+                           @foreach($errors->get('telephone') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>
                     
                     <div class=" col col-lg-6">
-                       <div class="form-group">
+                       <div class="form-group  @if($errors->get('actif')) has-error @endif">
                          <label for="communes_nom">commune</label>
                          <select name="communes_id" id="" class="form-control" 
                                class="@error('communes_id') is-danger @enderror">
@@ -76,7 +96,7 @@
                  </div>
                 
                  <div class=" col col-lg-6">
-                    <div class="form-group">                  
+                    <div class="form-group  @if($errors->get('actif')) has-error @endif">                  
                          <span class="input-group-text">Etat de la cooperative:&nbsp&nbsp</span>
                          @if($cooperative->etat_cooperative == 1)
                       <input type="radio" name="actif"  checked="true" value="1">
@@ -88,7 +108,12 @@
                           <label for="gender">Actif</label>
                           <input type="radio" name="actif" checked="true"  value="0">
                           <label for="gender-f">Non Actif</label>
-                          @endif                 
+                          @endif 
+                          @if($errors->get('actif'))
+                           @foreach($errors->get('actif') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif                
                       </div>
                     </div>
                 </div>

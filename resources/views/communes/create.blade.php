@@ -32,9 +32,14 @@
                   <form action="{{url('communes')}}"  method="POST" enctype="multipart/form-data"> 
                   @csrf
                   <div class="col col-lg-6">
-                      <div class="form-group">
+                      <div class="form-group @if($errors->get('nom')) has-error @endif">
                         <label class="form-control-label" for="mail">nom</label>
                         <input type="text" class="form-control form-control-alternative" placeholder="nom" name="nom" size="30">
+                        @if($errors->get('nom'))
+                           @foreach($errors->get('nom') as $message)
+                              <h5>{{$message}}</h5>
+                            @endforeach
+                        @endif
                       </div>
                     </div>                  
                     <div class="col col-lg-6">
@@ -42,7 +47,7 @@
                          <label for="provinces_nom">province</label>
                          <select name="id_province" id="" class="form-control" 
                                class="@error('provinces_id') is-danger @enderror">
-                                <option value="">Select province</option>
+                               
                                    @foreach($provinces as $province)
                                 <option value="{{$province->id}}">{{$province->nom}}</option>
                                @endforeach

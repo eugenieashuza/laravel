@@ -4,8 +4,9 @@
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">Eugenie Ntonga</div>
-				<div class="profile-usertitle-status"><span class="indicator label-success"></span>En ligne</div>
+				<div class="profile-usertitle-name"> {{ Auth::user()->name }}</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>En ligne
+				{{date(d-m-Y H:m:s)}} </div>
 			</div>
 			<div class="clear"></div>
 		</div>

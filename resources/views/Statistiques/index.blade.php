@@ -66,7 +66,7 @@
 		<div class="clear"></div>
 
     </div> 
-		<div class="container">
+		<!-- <div class="container">
       <h1>Carrousel</h1>
       <div id="demo" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -165,41 +165,24 @@
                 <div class="value tooltips" data-original-title="7500" data-toggle="tooltip" data-placement="top">25%</div>
               </div>
             </div>
-              <!-- <div class="bar">
-                <div class="title">-2jour</div>
-                <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
-              </div>
-              <div class="bar">
-                <div class="title">-3jour</div>
-                <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
-              </div>
-              <div class="bar">
-                <div class="title">-4jour</div>
-                <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
-              </div>
-              <div class="bar">
-                <div class="title">-5jour</div>
-                <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
-              </div>
-              <div class="bar">
-                <div class="title">-6jour</div>
-                <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
-              </div> -->
-            <!-- </div> -->
-		
+             
    <div class="col-lg-10">
 
   <canvas id="myChart" width="400" height="400"></canvas>
   </div>
+  
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
+    data: {   
+      
+        labels: [{{$cooperative_membres->nom}}],        
+        datasets: [{        
+            data: [{{$cooperative_membres->nbre}}],
+           
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -217,7 +200,7 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
-        }]
+        }]  
     },
     options: {
         scales: {
@@ -231,7 +214,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
   
-   -->
+   
    <!-- <div class="col-lg-10 bg-blue">
         <canvas id="myChart"></canvas>
       </div> 

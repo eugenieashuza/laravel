@@ -1,4 +1,12 @@
 /*mon css*/
+.bg_width{
+  width: 500px !important;
+  background-color: teal !important ;
+  align-content: center;
+}
+.bg_teal_color{
+  background-color: teal !important ;
+}
 .sidebar_menu{
   background-color:rgba(29, 28, 28, 0.699) !important;
   color:#e6e7e8 !important;

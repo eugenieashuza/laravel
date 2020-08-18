@@ -1,6 +1,5 @@
 <?php
 Namespace App\Http\Controllers;
-use App\Statistique;
 use App\Cooperative;
 use App\Acceuil;
 use App\Cooperative_membre;

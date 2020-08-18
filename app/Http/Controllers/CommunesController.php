@@ -13,7 +13,7 @@ class CommunesController extends Controller
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('communes.id,communes.nom,communes.created_at,provinces.nom as province'))
         ->distinct('communes.id')
-        ->get();
+        ->Paginate(15);
         // return view('communes/index',compact('$communes'))->withuser($commune); 
          return view('communes/index', ['communes' => $communes ]); 
 
@@ -42,7 +42,7 @@ class CommunesController extends Controller
         $communes->id_province = $request->id_province;
         $communes->save();
         //  }
-        return redirect('communes');
+        return redirect('communes')->withFlashMessage('Commune added Successfully.');
     }
 
      //Dependancy injection (Injection des dependances)
@@ -70,7 +70,7 @@ class CommunesController extends Controller
          $commune->id_province = $request->id_province;
          $commune->save();
         //   }
-         return redirect('communes');
+         return redirect('communes')->withFlashMessage('Commune updated Successfully.');
      }
      public function search()
      {
@@ -81,7 +81,7 @@ class CommunesController extends Controller
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('communes.id,communes.nom,communes.created_at,provinces.nom as province'))  
         -> where('communes.nom', 'like' ,"%$q%") 
-        ->get();
+        ->Paginate(15);
     //   $communes = Commune::where('nom', 'like' ,"%$q%")   
     //     // ->orwhere()
     //     ->paginate(6);

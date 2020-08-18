@@ -38,6 +38,15 @@ class StatistiquesController extends Controller
         $nonactif_membre = DB::table('cooperative_membres')
         ->where('cooperative_membres.etat_membre',0)
         ->count();
+
+        $cooperative_membres = DB::table('cooperative_membres')
+        ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+        ->join('communes', 'communes.id','cooperatives.id_commune')                 
+        ->select(DB::raw('cooperative_membres.id_cooperative,communes.nom as nom'))       
+        ->groupBy('communes.nom')  
+        ->count('cooperative_membres.id_cooperative','nbre'); 
+        
+
         $actifs = $actif /  $totalcoop;
         $actifs =  $actifs * 100;
         $actifs = round($actifs, 2);
@@ -53,12 +62,14 @@ class StatistiquesController extends Controller
         $nonactif_membres =  $nonactif_membre /  $totalcoop_membre ;
         $nonactif_membres = $nonactif_membres * 100;
         $nonactif_membres = round($nonactif_membres, 2);
+       
 
 
-
-        return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,'totalcoop' =>  $totalcoop ,
-        'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,'totalmembre' =>  $totalmembre ,
-        'actif_membres' => $actif_membres , 'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ]);
+        return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,
+        'totalcoop' =>  $totalcoop ,'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,
+        'totalmembre' =>  $totalmembre ,'actif_membres' => $actif_membres ,
+         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,
+         'cooperative_membres' =>  $cooperative_membres]);
     }
 
 

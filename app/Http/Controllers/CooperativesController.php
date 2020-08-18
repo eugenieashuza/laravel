@@ -15,7 +15,7 @@ class CooperativesController extends Controller
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.telephone,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
         ->distinct('cooperatives.id')
-        ->get();
+        ->Paginate(15);
        // $text=$cooperatives->statut;
        //$contents = Storage::get('$text');
      
@@ -54,11 +54,11 @@ class CooperativesController extends Controller
         $cooperatives->nom = $request->nom;
         $cooperatives->id_commune = $request->communes_id;
         $cooperatives->etat_cooperative = $request->actif;
-        $cooperatives->id_user = 1;
+        $cooperatives->id_user =  Auth::user()->id;
        
          
          $cooperatives->save();  
-         return redirect('cooperatives');
+         return redirect('cooperatives')->withFlashMessage('Cooperative added Successfully.');;
     }
 
 
@@ -94,10 +94,10 @@ class CooperativesController extends Controller
         $cooperative->nom = $request->nom;
         $cooperative->id_commune = $request->communes_id;
         $cooperative->etat_cooperative = $request->actif;
-        
+        $cooperatives->id_user =  Auth::user()->id;
         $cooperative->save();
         
-        return redirect('cooperatives');
+        return redirect('cooperatives')->withFlashMessage('Cooperative updated Successfully.');
 
     }
     
@@ -111,8 +111,8 @@ class CooperativesController extends Controller
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('cooperatives.id,cooperatives.nom,cooperatives.telephone,cooperatives.statut,cooperatives.mail,cooperatives.etat_cooperative,cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
         ->distinct('cooperatives.id')
-       -> where('cooperatives.nom', 'like' ,"%$q%")      
-       ->get();
+        -> where('cooperatives.nom', 'like' ,"%$q%")      
+        ->Paginate(15);
        return view('cooperatives/index' ,['cooperatives' => $cooperatives ]);
    }
 

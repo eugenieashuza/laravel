@@ -15,9 +15,9 @@ class Cooperative_membresController extends Controller
         ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
         ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
         ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))
-         ->distinct('cooperatives.id')
+        
         //->where('cooperative_membres.etat_membre',1)
-        ->get();
+        ->Paginate(15);
        // $text=$cooperatives->statut;
        //$contents = Storage::get('$text');
     //    $cooperatives2 = DB::table('cooperative_membres')
@@ -42,19 +42,17 @@ class Cooperative_membresController extends Controller
     public function storecooperative_membres(Request $request)
     {
         // Validation
-        $dt = new DateTime();
-        $dt->format('Y-m-d');
+        // $dt = new Da();
+        //$dt->format('Y-m-d');
         $request->validate([
             'membre' => 'required' ,
             'montant' => ['required', 'numeric', 'min:1'],
-            'date_adesion' =>  ['required', 'numeric', 'min:' .date('Y-m-d')],
-            'categorie' => ['required', 'string'] ,
+            'date_adesion' =>  ['required', 'numeric', 'max:' .date('d-m-Y')],
+            'categorie' => 'required|string',
             'cooperative' => 'required',
-            'etat' => 'required'
-            // 'year' => ['required', 'numeric', 'min:' . date('Y-m-d')],
-            // 'description' => ['required', 'string', 'max:500'],
-            // {{ date('Y-m-d H:i:s') }};
-            // {{  now()->toDateTimeString('Y-m-d') }}
+            'etat' => 'required' ,
+            'sortie' => ['min:date_adesion','max:'.date('d-m-Y')] or null
+
             
         ]);
 
@@ -67,13 +65,13 @@ class Cooperative_membresController extends Controller
         $cooperatives_membre->montant = $request->montant;
         $cooperatives_membre->etat_membre = $request->etat;
         $cooperatives_membre->categorie_membre = $request->categorie;
-        $cooperatives_membre->id_membre = $request->membre;
+        $cooperatives_membre->id_membre = $request->membre;      
         $cooperatives_membre->date_de_sortie = $request->sortie;
         $cooperatives_membre->id_cooperative = $request->cooperative;     
         $cooperatives_membre->save();
         //  }
     
-         return redirect('cooperative_membres');
+         return redirect('cooperative_membres')->withFlashMessage('Association member to cooperative added Successfully.');;
     }
 
     // //Dependancy injection (Injection des dependances)
@@ -105,7 +103,7 @@ class Cooperative_membresController extends Controller
     $cooperative_membre->date_de_sortie = $request->sortie;
     $cooperative_membre->id_cooperative = $request->cooperative;     
     $cooperative_membre->save();
-        return redirect('cooperative_membres');
+        return redirect('cooperative_membres')->withFlashMessage('Association member to cooperative updated Successfully.');;
 
     }
 
@@ -117,11 +115,10 @@ class Cooperative_membresController extends Controller
        $cooperative_membres = DB::table('cooperative_membres')
         ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
         ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
-        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))
-        ->distinct('cooperatives.id')
+        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))      
         ->where('nom', 'like' ,"%$q%")   
         ->orwhere('nomc', 'like' ,"%$q%")  
-       ->get();
+        ->Paginate(15);
  
        return view('cooperative_membres/index',['cooperative_membres' => $cooperative_membres ]);
    }

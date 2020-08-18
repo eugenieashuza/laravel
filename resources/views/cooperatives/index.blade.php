@@ -13,6 +13,12 @@
     
      
       <div class="card-header row add-element-box bg-transparent ">
+      <div class=" alert-box success  bg_width "> 
+          @if (Session::has('flash_message'))
+          <h4 class="text-center  breadcrumb  bg_width"> 
+            {{ Session::get('flash_message') }}  </h4>
+           @endif
+    </div> 
 
               <form method="post">
               <fieldset>
@@ -91,7 +97,7 @@
                 </tbody>
              
               </table>
-          
+              <div class="text-center">{{$cooperatives->links()}}</div>
             </div>
          <!-- <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">

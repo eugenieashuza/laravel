@@ -8,7 +8,7 @@ class ProvincesController extends Controller
 
     public function index()
     {
-        $provinces = DB::table('provinces')->simplePaginate(2);
+        $provinces = DB::table('provinces')->Paginate(2);
 
         return view('provinces/index', [
             'provinces' => $provinces ]);
@@ -34,7 +34,7 @@ class ProvincesController extends Controller
         $provinces->nom = $request->nom;    
         $provinces->save();
         //   }
-        return redirect('provinces')->withFlashMessage('Created Successfully.');
+        return redirect('provinces')->withFlashMessage('Province added Successfully.');
         //->with('Success', 'Insertion avec success');
         // 'year' => ['required', 'numeric', 'min:1950', 'max:' . date('Y')],
         //     'description' => ['required', 'string', 'max:500'],
@@ -60,7 +60,7 @@ class ProvincesController extends Controller
          $province->nom = $request->nom;
          $province->save();
         
-         return redirect('provinces');
+         return redirect('provinces')->withFlashMessage('Province updated Successfully.');;
      }
 
       public function search(){
@@ -69,7 +69,7 @@ class ProvincesController extends Controller
         //  dd($q);
         $provinces = DB::table('provinces')   
         -> where('nom', 'like' ,"%$q%") 
-        ->simplePaginate(2);
+        ->Paginate(2);
         
     //   $communes = Commune::where('nom', 'like' ,"%$q%")   
     //     // ->orwhere()

@@ -15,9 +15,19 @@
 				<ul class="children collapse  nav menu" id="sub-item-1">
 					<li class="side_menu"><a class="" href="#">
                     <em class="fa fa-user ">&nbsp</em>Profil
-					<li class="side_menu"><a class="" href="{{ route('logout') }}">
-                    <em  class="fa fa-power-off">&nbsp</em>Deconnexion
-					</a></li>
+					 <li class="side_menu"> <!--<a class="" href="{{route('logout')}}"> -->
+                    <a class="" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                     <em  class="fa fa-power-off">&nbsp</em>Deconnexion
+                                        <!-- {{ __('Logout') }} -->
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                    
+					</li>
 				</ul>
               
 			</li> <!-- <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em>Deconnexion</a></li> -->

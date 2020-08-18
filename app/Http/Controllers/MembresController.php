@@ -14,7 +14,7 @@ class MembresController extends Controller
         ->join('provinces', 'provinces.id', 'communes.id')                 
         ->select(DB::raw('membres.id,membres.nom,membres.mail,membres.prenom,membres.sexe,membres.created_at,membres.age,communes.nom as nomc,provinces.nom as nomp'))
         ->distinct('membres.id')
-        ->get();
+        ->Paginate(15);
     
 
       return view('membres/index', ['membres'=> $membres]);
@@ -54,11 +54,11 @@ class MembresController extends Controller
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
             $membre->sexe = $request->gender;
-            $membre->id_users = 1;
+            $membre->id_users = Auth::user()->id;
             $membre->save();
 
         //  }
-         return redirect('membres');
+         return redirect('membres')->withFlashMessage('Member added Successfully.');;
     
     }
 
@@ -95,11 +95,11 @@ class MembresController extends Controller
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
             $membre->sexe = $request->gender;
-            $membre->id_users = 1;
+            $membre->id_users = Auth::user()->id;
             $membre->save();
 
         //  }
-         return redirect('membres');
+         return redirect('membres')->withFlashMessage('Member updated Successfully.');;
     }
 
     public function search(){
@@ -112,7 +112,7 @@ class MembresController extends Controller
         ->select(DB::raw('membres.id,membres.nom,membres.mail,membres.prenom,membres.sexe,membres.created_at,membres.age,communes.nom as nomc,provinces.nom as nomp'))
         -> where('membres.nom', 'like' ,"%$q%") 
         -> orwhere('membres.prenom', 'like' ,"%$q%") 
-        ->get();
+        ->Paginate(15);
      
        return view('membres/index' ,['membres' => $membres ]);
    }

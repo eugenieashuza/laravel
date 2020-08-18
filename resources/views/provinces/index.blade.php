@@ -11,15 +11,15 @@
     <li class="active">Provinces</li>
 </ol>
     
+  <div class="card-header row add-element-box bg-transparent">
 
-<div class="card-header row add-element-box bg-transparent ">
-    <div class="row alert-box success"> 
-    @if (Session::has('flash_message'))
-     <h4 class="text-center col-6 breadcrumb mb-0"> 
-           {{ Session::get('flash_message') }}  </h4>
-         @endif
-        
+    <div class=" alert-box success  bg_width "> 
+          @if (Session::has('flash_message'))
+          <h4 class="text-center  breadcrumb  bg_width"> 
+            {{ Session::get('flash_message') }}  </h4>
+           @endif
     </div> 
+    
 
       <form method="post">
       <fieldset>
@@ -87,7 +87,7 @@
         </tbody>
      
       </table>
-        <div class="text-center">{{$provinces->links()}}</div>
+        <div class="text-center text-white">{{$provinces->links()}}</div>
     </div>
  <!-- <div class="media align-items-center">
                   <a href="#" class="avatar rounded-circle mr-3">

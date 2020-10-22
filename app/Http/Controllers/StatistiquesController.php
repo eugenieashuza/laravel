@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class StatistiquesController extends Controller
 {
-
+    
     
     public function index()
     {
@@ -39,12 +39,10 @@ class StatistiquesController extends Controller
         ->where('cooperative_membres.etat_membre',0)
         ->count();
 
-        $cooperative_membres = DB::table('cooperative_membres')
-        ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
-        ->join('communes', 'communes.id','cooperatives.id_commune')                 
-        ->select(DB::raw('cooperative_membres.id_cooperative,communes.nom as nom'))       
-        ->groupBy('communes.nom')  
-        ->count('cooperative_membres.id_cooperative','nbre'); 
+       
+        // $viewer = array_column($viewer, 'count');
+        // ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
+        //     ->with('click',json_encode($click,JSON_NUMERIC_CHECK));
         
 
         $actifs = $actif /  $totalcoop;
@@ -64,12 +62,30 @@ class StatistiquesController extends Controller
         $nonactif_membres = round($nonactif_membres, 2);
        
 
-
+        $results = DB::table('cooperative_membres')
+        ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+        ->join('communes', 'communes.id','cooperatives.id_commune')                 
+        ->select(DB::raw('communes.nom as nom ', DB::raw('COUNT(cooperative_membres.id_cooperative) as nbre')) ) 
+        ->groupBy('communes.nom','nom');
         return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,
         'totalcoop' =>  $totalcoop ,'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,
         'totalmembre' =>  $totalmembre ,'actif_membres' => $actif_membres ,
-         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,
-         'cooperative_membres' =>  $cooperative_membres]);
+         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,'results' => $results
+         ]);
+
+    }
+    public function chart()
+    {
+        # code...
+        // $result = DB::table('cooperative_membres')
+        // ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+        // ->join('communes', 'communes.id','cooperatives.id_commune')                 
+        // ->select(DB::raw('cooperative_membres.id_cooperative,communes.nom as communenom'))       
+        // ->groupBy('communes.nom','communenom')  
+        // ->count('cooperative_membres.id_cooperative','nbre'); 
+
+        // // return response()->json($result);
+        // return view('chart',['result' => $result]);
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Province;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ProvincesController extends Controller
@@ -8,7 +9,7 @@ class ProvincesController extends Controller
 
     public function index()
     {
-        $provinces = DB::table('provinces')->Paginate(2);
+        $provinces = DB::table('provinces')->Paginate(7);
 
         return view('provinces/index', [
             'provinces' => $provinces ]);
@@ -25,7 +26,7 @@ class ProvincesController extends Controller
     {
         // Validation
         $request->validate([
-            'nom' => 'required|unique:provinces'
+            'nom' => 'required|unique:provinces|string| min:2'
         ]);
         // $prov= DB::table('provinces')->where('nom',$request->nom);  
         //  if( $prov == null)
@@ -54,7 +55,7 @@ class ProvincesController extends Controller
      {
          // Validation
          $request->validate([
-             'nom' => 'required|unique:provinces' ,  
+             'nom' => 'required' ,  
          ]);
        
          $province->nom = $request->nom;
@@ -78,5 +79,33 @@ class ProvincesController extends Controller
         // return view('communes.search')->with('communes' => $communes);
         return view('provinces/index' ,['provinces' => $provinces ]);
     }
+
+    public function createPDF() {
+        // retreive all records from db
+        $data = Province::all();
+  
+        // share data to view
+        view()->share('province',$data);
+        $pdf = PDF::loadView('provinces/pdf_view', $data);
+  
+        // download PDF file with download method
+        return $pdf->download('pdf_file_provinces.pdf');
+      }
+   
+// ...
+// public function getPostPdf (Post $post)
+// {
+//     // L'instance PDF avec une vue : resources/views/posts/show.blade.php
+//     $pdf = PDF::loadView('posts.show', compact('post'));
+
+//       // Lancement du téléchargement du fichier PDF
+//       return $pdf->download(\Str::slug($post->title).".pdf");
+//       return PDF::loadView('posts.show', compact('post'))
+//       ->setPaper('a4', 'landscape')
+//       ->setWarnings(false)
+//       ->save(public_path("storage/documents/fichier.pdf"))
+//       ->stream();
+
+//     }
  
 }

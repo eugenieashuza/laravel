@@ -19,13 +19,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg_teal_color">
+<body class="bg_teal_body">
     <div id="app">
-        <div class="col-md-4 text-center">
-            <img src="{{asset('images/Capture1.png')}}" alt="">
-        </div>
-        <nav class="navbar navbar-expand-md navbar-light bg_teal_color shadow-sm">
+              <div class=" col-md-4  margin_top_width">
+                   <img src="{{asset('images/logo.png')}}" alt="" heigth=300 width=300 class="img-responsive" >
+               </div>
+        <nav class="navbar navbar-expand-md navbar-light bg_teal_body shadow-sm">
+               
             <div class="container">
+               
                 <a class="navbar-brand" href="{{ url('/') }}"><span>CONSERVE</span>STATUTS
                     <!-- {{ config('app.name', 'ConserveStatuts') }} -->
                 </a>

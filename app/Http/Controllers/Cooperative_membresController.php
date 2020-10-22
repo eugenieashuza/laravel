@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Cooperative_membre;
 use App\Cooperative;
 use App\Membre;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,13 +46,13 @@ class Cooperative_membresController extends Controller
         // $dt = new Da();
         //$dt->format('Y-m-d');
         $request->validate([
-            'membre' => 'required' ,
+            'membre' => ['required' ,'string', 'min:2'] ,
             'montant' => ['required', 'numeric', 'min:1'],
             'date_adesion' =>  ['required', 'numeric', 'max:' .date('d-m-Y')],
-            'categorie' => 'required|string',
+            'categorie' => ['required' ,'string', 'min:2'],
             'cooperative' => 'required',
-            'etat' => 'required' ,
-            'sortie' => ['min:date_adesion','max:'.date('d-m-Y')] or null
+            'etat' => ['required' ,'string', 'min:2'],
+            'sortie' => ['min:date_adesion','max:'.date('d-m-Y')] 
 
             
         ]);
@@ -88,12 +89,13 @@ class Cooperative_membresController extends Controller
     {
       // Validation
       $request->validate([
-        'membre' => 'required' ,
-        'montant' => 'required' ,
-        'date_adesion' => 'required' ,
-        'categorie' => 'required' ,
-        'cooperative' => 'required' ,
-        'etat' => 'required'
+        'membre' => ['required' ,'string', 'min:2'] ,
+        'montant' => ['required', 'numeric', 'min:1'],
+        'date_adesion' =>  ['required', 'numeric', 'max:' .date('d-m-Y')],
+        'categorie' => ['required' ,'string', 'min:2'],
+        'cooperative' => 'required',
+        'etat' => ['required' ,'string', 'min:2'],
+        'sortie' => ['min:date_adesion','max:'.date('d-m-Y')] 
     ]);       
     $cooperative_membre->date_adesion = $request->date_adesion;
     $cooperative_membre->montant = $request->montant;
@@ -115,7 +117,8 @@ class Cooperative_membresController extends Controller
        $cooperative_membres = DB::table('cooperative_membres')
         ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
         ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
-        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))      
+        ->select(DB::raw('cooperative_membres.id,cooperative_membres.montant,cooperative_membres.etat_membre,cooperative_membres.categorie_membre,
+        cooperative_membres.date_adesion,cooperatives.nom as nomc,membres.nom as nom'))      
         ->where('nom', 'like' ,"%$q%")   
         ->orwhere('nomc', 'like' ,"%$q%")  
         ->Paginate(15);
@@ -123,6 +126,23 @@ class Cooperative_membresController extends Controller
        return view('cooperative_membres/index',['cooperative_membres' => $cooperative_membres ]);
    }
     
-    
+      
+   public function createPDF() {
+    // retreive all records from db
+    $data = DB::table('cooperative_membres')
+    ->join('cooperatives', 'cooperatives.id','cooperative_membres.id_cooperative')
+    ->join('membres', 'membres.id', 'cooperative_membres.id_membre')                 
+    ->select(DB::raw('cooperative_membres.montant,cooperative_membres.etat_membre,
+    cooperative_membres.categorie_membre,cooperative_membres.date_adesion,
+    cooperatives.nom as nomc,membres.nom as nom'))
+    ->get();
+
+    // share data to view
+    view()->share('cooperative_membre',$data);
+    $pdf = PDF::loadView('cooperative_membres/pdf_view', $data);
+
+    // download PDF file with download method
+    return $pdf->download('pdf_file_assosier.pdf');
+   }
 
 }

@@ -8,9 +8,10 @@
       <br><br>
   
 <!-- <div class="container-fluid  "> -->
-<!-- <div class="col-lg-2"></div> -->
-<div class="col-lg-2"></div>
-	<footer class="footer_color col-lg-10 ">
+   
+  <div class="container col-lg-10 text-center">
+ 
+	<footer class="footer_color col-lg-12 ">
 		<div class="row pt-4 flex-md-row-reverse">
 			
 
@@ -40,6 +41,7 @@
 
 		
 		
-	</footer>
+	 </footer>
+   </div>
 <!-- </div> -->
 <!-- /.row -->

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Membre;
 use App\Commune;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class MembresController extends Controller
@@ -9,6 +10,7 @@ class MembresController extends Controller
 
     public function index()
     {
+        $communes= Commune::all();
         $membres = DB::table('membres')
         ->join('communes', 'communes.id', 'membres.id_commune')
         ->join('provinces', 'provinces.id', 'communes.id')                 
@@ -17,7 +19,7 @@ class MembresController extends Controller
         ->Paginate(15);
     
 
-      return view('membres/index', ['membres'=> $membres]);
+      return view('membres/index', ['membres'=> $membres ,'communes' => $communes]);
     }
 
      public function create()
@@ -34,10 +36,10 @@ class MembresController extends Controller
         $request->validate([
             'mail' => 'required|unique:membres' ,
             'nom' => 'required|unique:membres' ,
-            'prenom' => 'required' ,
+            'prenom' => ['required' ,'string' ,'min:3'],
             'communes_id' => 'required' ,
             'gender' => 'required',
-            'age' => 'required',
+            'age' => ['required','numeric','min:1']
             
 
 
@@ -54,7 +56,7 @@ class MembresController extends Controller
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
             $membre->sexe = $request->gender;
-            $membre->id_users = Auth::user()->id;
+            $membre->id_users = $request->idutil;
             $membre->save();
 
         //  }
@@ -77,10 +79,10 @@ class MembresController extends Controller
         $request->validate([
             'mail' => 'required|unique:membres' ,
             'nom' => 'required|unique:membres' ,
-            'prenom' => 'required' ,
+            'prenom' => ['required' ,'string' ,'min:3'],
             'communes_id' => 'required' ,
             'gender' => 'required',
-            'age' => 'required',
+            'age' => ['required' ,'numeric' ,'min:1'],
             
 
 
@@ -95,7 +97,7 @@ class MembresController extends Controller
             $membre->id_commune = $request->communes_id;
             $membre->age = $request->age;
             $membre->sexe = $request->gender;
-            $membre->id_users = Auth::user()->id;
+            $membre->id_users = $request->idutil;
             $membre->save();
 
         //  }
@@ -116,6 +118,23 @@ class MembresController extends Controller
      
        return view('membres/index' ,['membres' => $membres ]);
    }
+
+   public function createPDF() {
+    // retreive all records from db
+    $data = DB::table('membres')
+    ->join('communes', 'communes.id', 'membres.id_commune')
+    ->join('provinces', 'provinces.id', 'communes.id')                 
+    ->select(DB::raw('membres.nom,membres.mail,membres.prenom,membres.created_at,
+    membres.sexe,membres.age,communes.nom as nomc,provinces.nom as nomp'))
+    ->get();
+     
+    // share data to view
+    view()->share('membre',$data);
+    $pdf = PDF::loadView('membres/pdf_view', $data);
+
+    // download PDF file with download method
+    return $pdf->download('pdf_file_membres.pdf');
+  }
 
 
 }

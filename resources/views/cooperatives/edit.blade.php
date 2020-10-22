@@ -65,6 +65,13 @@
                         @endif
                       </div>
                     </div>
+                    <div class="col col-lg-6">
+                      <div class="form-group ">
+                        <label class="form-control-label" for="phone">id de l'enregistreur</label>
+                        <input type="text" class="form-control form-control-alternative" readonly name="idutil" size="30" value="{{ Auth::user()->id }}" >
+                      </div>
+                    </div>
+                    
                     <div class=" col col-lg-6">
                       <div class="form-group  @if($errors->get('telephone')) has-error @endif">
                         <label class="form-control-label" for="phone">telephone</label>

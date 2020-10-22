@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Cooperative;
 use App\Commune;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +41,7 @@ class CooperativesController extends Controller
             'telephone' => 'required|unique:cooperatives' ,
             'communes_id' => 'required' ,
             'actif' => 'required' ,
-            'nom' => 'required'
+            'nom' => ['required' , 'string' ,'min:3']
         ]);
 
         $filename = time().'.'.$request->statut->getClientOriginalExtension();
@@ -54,7 +55,7 @@ class CooperativesController extends Controller
         $cooperatives->nom = $request->nom;
         $cooperatives->id_commune = $request->communes_id;
         $cooperatives->etat_cooperative = $request->actif;
-        $cooperatives->id_user =  Auth::user()->id;
+        $cooperatives->id_user =  $request->idutil;
        
          
          $cooperatives->save();  
@@ -78,9 +79,9 @@ class CooperativesController extends Controller
         $request->validate([
             'mail' => 'required|unique:cooperatives' ,
             'statut' => 'required|unique:cooperatives' ,
-            'telephone' => 'required|unique:cooperatives' ,
+            'telephone' => 'required|unique:cooperatives',
             'communes_id' => 'required' ,
-            'nom' => 'required' ,
+            'nom' => ['required' , 'string' ,'min:3'] ,
             'actif' => 'required'
         ]);
 
@@ -94,9 +95,8 @@ class CooperativesController extends Controller
         $cooperative->nom = $request->nom;
         $cooperative->id_commune = $request->communes_id;
         $cooperative->etat_cooperative = $request->actif;
-        $cooperatives->id_user =  Auth::user()->id;
-        $cooperative->save();
-        
+        $cooperatives->id_user =  $request->idutil;
+        $cooperative->save();      
         return redirect('cooperatives')->withFlashMessage('Cooperative updated Successfully.');
 
     }
@@ -130,7 +130,22 @@ class CooperativesController extends Controller
     }
 
     
-
+    public function createPDF() {
+        // retreive all records from db
+        $data = DB::table('cooperatives') 
+        ->join('communes', 'communes.id', 'cooperatives.id_commune')
+         ->join('provinces', 'provinces.id', 'communes.id')                 
+         ->select(DB::raw('cooperatives.nom,cooperatives.telephone,cooperatives.mail,cooperatives.etat_cooperative,
+         cooperatives.created_at,communes.nom as nomc,provinces.nom as nomp'))
+         ->get();
+         
+        // share data to view
+        view()->share('cooperative',$data);
+        $pdf = PDF::loadView('cooperatives/recherche/pdf_view', $data);
+    
+        // download PDF file with download method
+        return $pdf->download('pdf_file_cooperatives.pdf');
+      }
     
 
 }

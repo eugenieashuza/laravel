@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 use App\Province;
 use App\Commune;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class CommunesController extends Controller
 {
 
@@ -23,7 +25,7 @@ class CommunesController extends Controller
     {
         # code...
         $provinces = Province::all();
-        return view('communes/create' , [ 'provinces' =>  $provinces ] );
+        return view('communes/create' , ['provinces' =>  $provinces ] );
     }
 
     public function storecommunes(Request $request)
@@ -31,7 +33,7 @@ class CommunesController extends Controller
         // Validation
         $request->validate([
             'nom' => 'required|unique:communes' ,
-            'id_province' => 'required'
+            'id_province' => 'required|numeric'
 
         ]);
         // $commune= DB::table('communes')->where('nom',$request->nom);  
@@ -60,8 +62,8 @@ class CommunesController extends Controller
      {
          // Validation
          $request->validate([
-             'nom' => 'required|unique:communes' ,
-             'id_province' => 'required'
+             'nom' => 'required|string| min:2',
+             'id_province' => 'required|numeric' 
          ]);
         //  $commune= DB::table('communes')->where('nom',$request->nom);  
         //  if( $commune == null)
@@ -89,5 +91,19 @@ class CommunesController extends Controller
         // return view('communes.search')->with('communes' => $communes);
         return view('communes/index' ,['communes' => $communes]);
     }
+
+    public function createPDF() {
+        // retreive all records from db
+        $data = DB::table('communes')  
+        ->join('provinces', 'provinces.id', 'communes.id')                 
+        ->select(DB::raw('communes.nom,provinces.nom as province')) 
+        ->get();
+        // share data to view
+        view()->share('commune',$data);
+        $pdf = PDF::loadView('communes/pdf_view', $data);
+  
+        // download PDF file with download method
+        return $pdf->download('pdf_file_communes.pdf');
+      }
  
 }

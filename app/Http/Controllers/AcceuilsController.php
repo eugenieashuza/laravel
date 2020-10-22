@@ -8,7 +8,7 @@ use App\Commune;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class AcceuilController extends Controller
+class AcceuilsController extends Controller
 {
     public function index()
     {
@@ -57,7 +57,7 @@ class AcceuilController extends Controller
         
     
 
-        // return view('/index');
+        // / return view('/index');/
     }
 
 }

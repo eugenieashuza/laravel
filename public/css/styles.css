@@ -1,4 +1,16 @@
 /*mon css*/
+.table_border_pdf{
+  border:solid 2px black !important;
+}
+.table_border_th{
+  background-color:#285e8e !important;
+}
+.bg_teal_body{
+  background-color: #6fdfc3c4;
+}
+.margin_top_width{
+  margin:-85px;
+}
 .bg_width{
   width: 500px !important;
   background-color: teal !important ;
@@ -13,8 +25,8 @@
 }
 .footer_color{
   background-color:white !important;
-  position: relative;
-  bottom: 0;
+  position: relative !important;
+  margin-left: auto;
 }
 .side_menu:hover{
   background-color: teal !important ;
@@ -1177,10 +1189,10 @@ h1.page-header {
   color: #30a5ff; }
 
 #easypiechart-teal .percent {
-  color: #1ebfae; }
+  color: #1ebfae ; }
 
 #easypiechart-orange .percent {
-  color: #ffb53e; }
+  color: #ffb53e !important; }
 
 #easypiechart-red .percent {
   color: #ef4040; }

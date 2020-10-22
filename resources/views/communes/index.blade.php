@@ -10,26 +10,22 @@
         </a></li>
       <li class="active">Communes</li>
     </ol>
-    <!-- <div class="row">
-    @include('flash-message')
-    </div> -->
-      
 
    <div class="card-header row add-element-box bg-transparent ">
-      <div class=" alert-box success  bg_width "> 
+     <div class=" alert-box success  bg_width "> 
           @if (Session::has('flash_message'))
           <h4 class="text-center  breadcrumb  bg_width"> 
             {{ Session::get('flash_message') }}  </h4>
            @endif
-      </div> 
+    </div>  
       <form method="post">
       <fieldset>
       <h3 class="text-white col-6 breadcrumb mb-0">Operations
-      <a href="{{url('communes/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une commune">
+        <a href="{{url('communes/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une commune">
           <i class="fa fa-plus"></i>
         </a>
-        <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
-          <i class="fa fa-print"></i>
+        <a href="{{ URL::to('communes/pdf') }}" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Exporter en PDF">
+        <i class="fa fa-print"></i>
         </a>
       </h3>
        

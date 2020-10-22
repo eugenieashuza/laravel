@@ -27,9 +27,9 @@
               <a href="{{url('cooperative_membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Assossier ">
                   <i class="fa fa-plus"></i>
                 </a>
-                <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
-                  <i class="fa fa-print"></i>
-                </a>
+                <a href="{{ URL::to('cooperative_membres/pdf') }}" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Exporter en PDF">
+                    <i class="fa fa-print"></i>
+                 </a>
               </h3>
                
                 </fieldset>

@@ -26,27 +26,16 @@
               <a href="{{url('cooperatives/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
                   <i class="fa fa-plus"></i>
                 </a>
-                <a href="#" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Imprimer">
-                  <i class="fa fa-print"></i>
+                <a href="{{ URL::to('cooperatives/recherche/pdf') }}" class=" add-element-item" data-toggle="tooltip" data-placement="right" title="Exporter en PDF">
+                   <i class="fa fa-print"></i>
                 </a>
               </h3>
                
                 </fieldset>
                 </form>  
             </div>
-
-        <form action="{{route('cooperatives.search')}}" class="d-flex mr-3">
-            <br><br>
-             <div class="input-group custom-search-form navbar-right col-lg-2">
-                   <input type="text" class="search_btn" name="q" placeholder="Search..." value="{{ request()->q ?? '' }}">
-                   <span class="input-group-btn  ">
-                        <button class="btn bg-teal search_btn" type="submit">
-                            <em class="fa fa-search"> </em>
-                        </button>
-                   </span>
-            </div>
-            <br><br>
-       </form>  
+          @include('cooperatives/recherche.search')
+     
             <div class="table-responsive">
               <table class="table align-items-center table-sm table-dark table-flush">
                 <thead class="thead-dark">

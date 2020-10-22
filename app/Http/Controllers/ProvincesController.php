@@ -9,7 +9,9 @@ class ProvincesController extends Controller
 
     public function index()
     {
-        $provinces = DB::table('provinces')->Paginate(7);
+        $provinces =  Province::all();
+         //$provinces = DB::table('provinces');
+         //->Paginate(7);
 
         return view('provinces/index', [
             'provinces' => $provinces ]);

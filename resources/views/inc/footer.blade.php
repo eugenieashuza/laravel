@@ -1,6 +1,6 @@
 
        <div class="row">
-           <div class="col-lg-12">
+           <div class="col-lg-12"></div>
         </div><!-- /.panel-->
       </div><!-- /.col-->
          <br><br>
@@ -8,8 +8,8 @@
       <br><br>
   
 <!-- <div class="container-fluid  "> -->
-   
-  <div class="container col-lg-10 text-center">
+   <div class="col-lg-2"></div>
+  <div class="container col-lg-8 text-center">
  
 	<footer class="footer_color col-lg-12 ">
 		<div class="row pt-4 flex-md-row-reverse">

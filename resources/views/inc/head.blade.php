@@ -11,7 +11,9 @@
 	<link href="{{asset('css/elements_respponsive.css')}}" rel="stylesheet">
 	<link href="{{asset('css/about.css')}}" rel="stylesheet">
 	<link href="{{asset('css/about_responsive.css')}}" rel="stylesheet">
+	<link href="{{asset('css/bootstrap-table.css')}}" rel="stylesheet">
 	 <link href="{{asset('css/style.css')}}" rel="stylesheet">
+	 <link href="{{asset('css/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('css/style-responsive.css')}}" rel="stylesheet">
 	<!-- <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-4.1.2/bootstrap.min.css')}}"> -->
 	<!-- Chargement de la librairie Javascript à utiliser -->

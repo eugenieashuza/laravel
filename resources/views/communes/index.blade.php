@@ -32,7 +32,7 @@
         </fieldset>
         </form>  
     </div>  
-    <form action="{{route('communes.search')}}" class="d-flex mr-3">
+    <!-- <form action="{{route('communes.search')}}" class="d-flex mr-3">
         <br><br>
              <div class="input-group custom-search-form navbar-right col-lg-2">
                    <input type="text" class="search_btn" name="q" placeholder="Search..." value="{{ request()->q ?? '' }}">
@@ -43,18 +43,20 @@
                    </span>
             </div>
             <br><br>
-    </form>
-    <div class="table-responsive">
-      
-      <table class="table align-items-center table-sm table-dark table-flush">
+    </form> -->
+     <div class="table-responsive"> 
+       
+      <table data-toggle="table" data-url=""  data-show-refresh="true" data-show-toggle="true"
+                       data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
+                       data-sort-name="name" data-sort-order="desc">
         <thead class="thead-dark">
           <tr>
            
-            <th scope="col">Numero</th>
-            <th scope="col"> Nom </th>           
-            <th scope="col">Date d'enregistrement</th> 
-            <th scope="col">Province</th> 
-            <th scope="col">Action</th>
+            <th>Numero</th>
+            <th> Nom </th>           
+            <th >Date d'enregistrement</th> 
+            <th>Province</th> 
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +76,7 @@
         </tbody>
      
       </table>
-        <div class="text-center">{{$communes->links()}}</div>
+        <!-- <div class="text-center">{{$communes->links()}}</div> -->
     </div>
     <br><br>
 

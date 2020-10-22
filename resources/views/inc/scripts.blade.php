@@ -26,7 +26,7 @@
   <script src="{{asset('js/google-map.js')}}"></script>
   <script src="{{asset('js/main.js')}}"></script>
   <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-
+  <script src="{{asset('js/bootstrap-table.js')}}"></script>
   
   <script type="text/javascript" language="javascript" src="{{asset('lib/advanced-datatable/js/jquery.dataTables.js')}}"></script>
   <script type="text/javascript" src="{{asset('lib/advanced-datatable/js/DT_bootstrap.js')}}"></script>
@@ -34,12 +34,12 @@
   <script src="{{asset('lib/common-scripts.js')}}"></script>
   <!--script for this page-->
    <!-- <script src="js/dataTables/jquery.dataTables.js')}}"></script> -->
-    <script src="{{asset('js/dataTables/dataTables.bootstrap.js')}}"></script>
+    <!-- <script src="{{asset('js/dataTables/dataTables.bootstrap.js')}}"></script>
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
             });
-    </script>
+    </script> -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
 	
 	<script>

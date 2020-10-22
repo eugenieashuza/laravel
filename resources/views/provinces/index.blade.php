@@ -44,7 +44,7 @@
         </fieldset>
         </form>  
     </div>
-    <form action="{{route('provinces.search')}}" class="d-flex mr-3">
+    <!-- <form action="{{route('provinces.search')}}" class="d-flex mr-3">
         <br><br>
              <div class="input-group custom-search-form navbar-right col-lg-2">
                    <input type="text" class="search_btn" name="q" placeholder="Search..." value="{{request()->q ?? '' }}">
@@ -55,16 +55,19 @@
                    </span>
             </div>
             <br><br>
-    </form>  
-    <div class="table-responsive">
-      <table class="table align-items-center table-sm table-dark table-flush" id="#dataTables-example" >
-        <thead class="thead-dark">
+    </form>   -->
+     <div class="table-responsive">  
+      <!-- <table class="table align-items-center table-sm table-dark table-flush" id="#dataTables-example" > -->
+    <table  data-toggle="table" data-url=""  data-show-refresh="true" data-show-toggle="true"
+                       data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
+                       data-sort-name="name" data-sort-order="desc">
+        <thead class="thead-dark ">
           <tr>
            
-            <th scope="col">Numero</th>
-            <th scope="col"> nom </th> 
-            <th scope="col">Date d'enregistrement</th> 
-            <th scope="col">Action</th>          
+            <th >Numero</th>
+            <th > nom </th> 
+            <th >Date d'enregistrement</th> 
+            <th >Action</th>          
           </tr>
         </thead>
         <tbody>
@@ -84,7 +87,7 @@
         </tbody>
      
       </table>
-        <div class="text-center text-white">{{$provinces->links()}}</div>
+        
     </div>
 
 

@@ -142,6 +142,9 @@ return [
 
 
          //
+         
+        //cht 
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
           // Service Provider DomPDF
         Barryvdh\DomPDF\ServiceProvider::class,
          //
@@ -180,6 +183,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
 
     ],
 

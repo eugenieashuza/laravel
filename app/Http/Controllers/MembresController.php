@@ -35,7 +35,7 @@ class MembresController extends Controller
         // Validation
         $request->validate([
             'mail' => 'required|unique:membres' ,
-            'nom' => 'required|unique:membres' ,
+            'nom' => 'required|unique:membres|string|min:2' ,
             'prenom' => ['required' ,'string' ,'min:3'],
             'communes_id' => 'required' ,
             'gender' => 'required',
@@ -134,6 +134,16 @@ class MembresController extends Controller
 
     // download PDF file with download method
     return $pdf->download('pdf_file_membres.pdf');
+  }
+
+  public function destroymembre(membre $membre)
+  {
+      //
+      $membre = Membre::find($membre->id);    
+        $membre->delete();
+       return redirect('membres')->withFlashMessage('membre deleted Successfully.');
+//     }
+
   }
 
 

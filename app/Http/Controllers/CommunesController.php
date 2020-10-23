@@ -105,5 +105,13 @@ class CommunesController extends Controller
         // download PDF file with download method
         return $pdf->download('pdf_file_communes.pdf');
       }
- 
+      public function destroycommune(Commune $commune)
+      {
+          //
+          $commune = Commune::find($commune->id);    
+            $commune->delete();
+           return redirect('communes')->withFlashMessage('Commune deleted Successfully.');
+    //     }
+
+      }
 }

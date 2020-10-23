@@ -24,6 +24,7 @@
 			<li class="side_menu"><a href="{{url('cooperative_membres')}}"><em class="fa fa-clone">&nbsp;</em>Assosier</a></li>
 			<li class="side_menu"><a href="{{url('provinces')}}"><em class="fa fa-book">&nbsp;</em>Provinces</a></li>
 			<li class="side_menu"><a href="{{url('communes')}}"><em class="fa fa-book">&nbsp;</em>Communes</a></li>
+			<li class="side_menu"><a href="{{url('message')}}"><em class="fa fa-book">&nbsp;</em>Rapport</a></li>
 			<!-- <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Configuration <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>

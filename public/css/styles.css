@@ -1,4 +1,8 @@
 /*mon css*/
+.bordure_de_page{
+  
+  height: 500px !important;
+}
 .table_border_pdf{
   border:solid 2px black !important;
 }

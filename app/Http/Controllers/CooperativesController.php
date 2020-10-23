@@ -35,13 +35,13 @@ class CooperativesController extends Controller
     {
         // Validation
         $request->validate([
-            'nom' => 'required|unique:cooperatives' ,
+            'nom' => 'required|unique:cooperatives|string|min:2' ,
             'mail' => 'required|unique:cooperatives' ,
             'statut' => 'required|unique:cooperatives' ,
-            'telephone' => 'required|unique:cooperatives' ,
+            'telephone' => 'required|unique:cooperatives|numeric|min:8' ,
             'communes_id' => 'required' ,
             'actif' => 'required' ,
-            'nom' => ['required' , 'string' ,'min:3']
+            'nom' => ['required' , 'string' ,'min:2']
         ]);
 
         $filename = time().'.'.$request->statut->getClientOriginalExtension();
@@ -77,11 +77,11 @@ class CooperativesController extends Controller
     public function updatecooperatives(Request $request, Cooperative $cooperative)
     {
         $request->validate([
-            'mail' => 'required|unique:cooperatives' ,
-            'statut' => 'required|unique:cooperatives' ,
-            'telephone' => 'required|unique:cooperatives',
+            'mail' => 'required' ,
+            'statut' => 'required' ,
+            'telephone' => 'required|numeric|min:8' ,
             'communes_id' => 'required' ,
-            'nom' => ['required' , 'string' ,'min:3'] ,
+            'nom' => ['required' , 'string' ,'min:2'] ,
             'actif' => 'required'
         ]);
 
@@ -145,6 +145,16 @@ class CooperativesController extends Controller
     
         // download PDF file with download method
         return $pdf->download('pdf_file_cooperatives.pdf');
+      }
+
+      public function destroycooperative(Cooperative $cooperative)
+      {
+          //
+          $cooperative = Cooperative::find($cooperative->id);    
+            $cooperative->delete();
+           return redirect('cooperatives')->withFlashMessage('cooperatives deleted Successfully.');
+    //     }
+
       }
     
 

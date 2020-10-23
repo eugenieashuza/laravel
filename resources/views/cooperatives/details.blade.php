@@ -10,10 +10,12 @@
 	   </div>
 	</div>
    <div class="clear"></div>
-   <p>
-   <iframe src="{{url('storage/'.$cooperatives->statut)}}" frameborder="0"></iframe>
+   <div >
+      <!-- <p class="bordure_de_page"> -->
+         <iframe src="{{url('storage/'.$cooperatives->statut)}}" frameborder="0" class= "col-lg-12 bordure_de_page"></iframe>
     
-   </p>     
-    
+        <!-- </p>    -->
+    </div>  
+    <div class="clear"></div>
    
 @endsection()

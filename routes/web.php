@@ -52,6 +52,7 @@ Route::get('communes/create', 'CommunesController@create');
 Route::post('communes', 'CommunesController@storecommunes');
 Route::get('communes/edit/{commune}', 'CommunesController@edit');
 Route::put('communes/{commune}', 'CommunesController@updatecommunes');
+Route::post('communes/destroycommune/{commune}', 'CommunesController@destroycommune');
 //for search
 Route::get('communes/search', 'CommunesController@search')->name('communes.search');
 //for generete pdf
@@ -76,6 +77,7 @@ Route::get('cooperative_membres/create', 'Cooperative_membresController@create')
 Route::post('cooperative_membres', 'Cooperative_membresController@storecooperative_membres');
 Route::get('cooperative_membres/edit/{cooperative_membre}', 'Cooperative_membresController@edit');
 Route::put('cooperative_membres/{cooperative_membre}', 'Cooperative_membresController@updatecooperative_membres');
+
 //for search
 Route::get('cooperative_membres/search', 'Cooperative_membresController@search')->name('Cooperative_membres.search');
 //for generete pdf
@@ -92,8 +94,17 @@ Route::get('/chart','StatistiquesController@chart');
 Route::get('profils/create','ProfilsController@create');
 Route::post('profils','ProfilsController@store');
 
+///emails
+// Route::get('/test-contact', function () {
+//     return new App\Mail\Contact([
+//       'nom' => 'Durand',
+//       'email' => 'durand@chezlui.com',
+//       'message' => 'Je voulais vous dire que votre site est magnifique !'
+//       ]);
+// });
 
-
+Route::get("message", "ContactController@formMessageGoogle");
+Route::post("message", "ContactController@sendMessageGoogle")->name('send.message.google');
 
 
 

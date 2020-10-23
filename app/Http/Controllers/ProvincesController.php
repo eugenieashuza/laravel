@@ -93,6 +93,15 @@ class ProvincesController extends Controller
         // download PDF file with download method
         return $pdf->download('pdf_file_provinces.pdf');
       }
+      public function destroyprovince(Province $provinces)
+      {
+          //
+          $provinces = Province::find($provinces->id);    
+            $provinces->delete();
+           return redirect('provincess')->withFlashMessage('province deleted Successfully.');
+    //     }
+
+      }
    
 // ...
 // public function getPostPdf (Post $post)

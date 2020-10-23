@@ -145,4 +145,14 @@ class Cooperative_membresController extends Controller
     return $pdf->download('pdf_file_assosier.pdf');
    }
 
+   public function destroycooperative_membre(Cooperative_membre $Cooperative_membre)
+   {
+       //
+       $Cooperative_membre = Cooperative_membre::find($Cooperative_membre->id);    
+         $Cooperative_membre->delete();
+        return redirect('cooperative_membres')->withFlashMessage('Cooperative_membre deleted Successfully.');
+ //     }
+
+   }
+
 }

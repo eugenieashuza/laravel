@@ -209,7 +209,8 @@
      <div class="col-lg-4"></div>       
    <div class="col-lg-10">
 
-  <canvas id="myChart" width="400" height="400"></canvas>
+   <div id="ca_graph"></div>
+     @columnchart('Finances', 'ca_graph')
   </div>
 
   <script>

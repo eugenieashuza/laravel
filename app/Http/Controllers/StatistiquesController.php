@@ -8,6 +8,7 @@ use App\Commune;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Khill\Lavacharts\Lavacharts;
 class StatistiquesController extends Controller
 {
     
@@ -43,6 +44,26 @@ class StatistiquesController extends Controller
         // $viewer = array_column($viewer, 'count');
         // ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
         //     ->with('click',json_encode($click,JSON_NUMERIC_CHECK));
+
+
+        $lava = new Lavacharts;
+
+        $finances = \Lava::DataTable();
+        $finances->addStringColumn('Mois')
+                 ->addNumberColumn('CA');
+
+                 $finances->addRow([jan-2016,  rand(1000,5000)])
+                 ->addRow([fév-2016,  rand(1000,5000)])
+                 ->addRow([mar-2016,  rand(1000,5000)]);   
+                 
+                 
+                 \LAVA::ColumnChart('Finances', $finances, [
+                    'title' => 'Chiffre d\'affaire',
+                    'titleTextStyle' => [
+                        'color'    => '#eb6b2c',
+                        'fontSize' => 14
+                    ]
+                ]);
         
 
         $actifs = $actif /  $totalcoop;
@@ -70,7 +91,7 @@ class StatistiquesController extends Controller
         return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,
         'totalcoop' =>  $totalcoop ,'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,
         'totalmembre' =>  $totalmembre ,'actif_membres' => $actif_membres ,
-         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,'results' => $results
+         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,'results' => $results,compact('lava')
          ]);
 
     }
@@ -86,6 +107,9 @@ class StatistiquesController extends Controller
 
         // // return response()->json($result);
         // return view('chart',['result' => $result]);
+
+
+    
     }
 
 

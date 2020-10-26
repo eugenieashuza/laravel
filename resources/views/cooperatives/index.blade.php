@@ -22,7 +22,7 @@
 
               <form method="post">
               <fieldset>
-              <h3 class="text-white col-6 breadcrumb mb-0">Operations
+              <h3 class="text-white col-6 breadcrumb mb-0">Options
               <a href="{{url('cooperatives/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Ajouter une cooperative">
                   <i class="fa fa-plus"></i>
                 </a>
@@ -75,9 +75,15 @@
                       
                        
                         <td>
-                           <a href="cooperatives/{{$cooperative->id}}" class="btn btn-primary">Voir le statut</a>
-                           <a href="cooperatives/download/{{$cooperative->statut}}" class="btn btn-primary">Down</a>
-                            <a href="cooperatives/edit/{{$cooperative->id}}" class="btn btn-primary">Edit</a>
+    
+                         <form action="communes/destroycooperative/{{$cooperative->id}}" method="post">  
+                            <a href="cooperatives/{{$cooperative->id}}" class="btn btn-primary"title="Show statut"><i class="fa fa-eye"></i></a>
+                            <a href="cooperatives/download/{{$cooperative->statut}}" class="btn btn-warning" title="Downloard statut"><i class="fa  fa-download"></i></a> 
+                            <a href="cooperatives/edit/{{$cooperative->id}}" class="btn btn-primary"title="Edit statut"><i class="fa fa-edit"></i></a>             
+                                        
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('do you want to delete this cooperative ?')" class="btn btn-danger  btn-xs" title="Delete"><i class="fa  fa-trash-o"></i></button>
+                                </form>  
                             
                         </td>
                     </tr>

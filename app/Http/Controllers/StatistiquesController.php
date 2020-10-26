@@ -6,9 +6,10 @@ use App\Cooperative_membre;
 use App\Membre;
 use App\Commune;
 use App\Province;
+use App\Providers\EventServiceProvider;
+// use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Khill\Lavacharts\Lavacharts;
 class StatistiquesController extends Controller
 {
     
@@ -40,31 +41,38 @@ class StatistiquesController extends Controller
         ->where('cooperative_membres.etat_membre',0)
         ->count();
 
-       
-        // $viewer = array_column($viewer, 'count');
-        // ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
-        //     ->with('click',json_encode($click,JSON_NUMERIC_CHECK));
+        // $now = Carbon::now();
 
+        $events_commune = EventServiceProvider::with(['cooperatives', 'communes'])
+            // ->whereMonth('start_date', $now->format('m'))
+            // ->whereYear('start_date', $now->format('Y'))
+            ->get();
 
-        $lava = new Lavacharts;
+        $commune_name = [];      
+        $events_count_per_commune = [];
+        $events_count_per = 0;
+        $commune_colors = "green";
+        $commune_color = [];
+        // $total_price_paid = [];
 
-        $finances = \Lava::DataTable();
-        $finances->addStringColumn('Mois')
-                 ->addNumberColumn('CA');
+        foreach ($events_commune->commune as $event_commune ) {
 
-                 $finances->addRow([jan-2016,  rand(1000,5000)])
-                 ->addRow([fév-2016,  rand(1000,5000)])
-                 ->addRow([mar-2016,  rand(1000,5000)]);   
-                 
-                 
-                 \LAVA::ColumnChart('Finances', $finances, [
-                    'title' => 'Chiffre d\'affaire',
-                    'titleTextStyle' => [
-                        'color'    => '#eb6b2c',
-                        'fontSize' => 14
-                    ]
-                ]);
-        
+            if (!in_array($event_commune->communes->nom, $commune_name)) {
+                $commune_name[] = $event_commune->communes->nom;  
+
+                foreach ($event_commune->cooperatives as $cooperatives) {
+                    if($event_commune->cooperatives->id_commune = $event_commune->communes->id ){
+                        $events_count_per = $events_count_per + 1;
+                    }
+             
+
+              }
+              $events_count_per_commune[] =  $events_count_per ;
+              $commune_color[] =  $commune_colors;
+            }
+        }
+
+            
 
         $actifs = $actif /  $totalcoop;
         $actifs =  $actifs * 100;
@@ -91,7 +99,10 @@ class StatistiquesController extends Controller
         return view('statistiques/index',['actifs' => $actifs , 'nonactifs' =>  $nonactifs ,
         'totalcoop' =>  $totalcoop ,'totalcom' =>  $totalcom,'totalprov' =>  $totalprov,
         'totalmembre' =>  $totalmembre ,'actif_membres' => $actif_membres ,
-         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,'results' => $results,compact('lava')
+         'nonactif_membres' =>  $nonactif_membres  , 'totalcommune' => $totalcommune ,'results' => $results,
+         'commune_name' => json_encode($commune_name),
+         'events_count_per_commune' => json_encode($events_count_per_commune),
+         'commune_color' => json_encode($commune_color),
          ]);
 
     }

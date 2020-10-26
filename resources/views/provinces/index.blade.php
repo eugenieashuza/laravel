@@ -79,7 +79,12 @@
                 <td>{{$province->created_at}}</td>
 
                 <td>                 
-                    <a href="provinces/edit/{{$province->id}}" class="btn btn-primary">Edit</a>                   
+                    <a href="provinces/edit/{{$province->id}}" class="btn btn-primary">Edit</a> 
+                    <form action="provinces/destroyprovince/{{$province->id}}"  method="post">                
+                    <a href="provinces/edit/{{$province->id}}" class="btn btn-primary" title="Editer"><i class="fa fa-edit"></i></a>                        
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('do you want to delete this member ?')" class="btn btn-danger  btn-xs" title="Delete"><i class="fa  fa-trash-o"></i></button>
+                                </form>                    
                 </td>
             </tr>
             <?php $i++ ?>

@@ -4,6 +4,7 @@
 	<title>ConserveStatuts</title>
 	<link href="{{asset('css/bootstrap-theme.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{asset('css/Chart.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/datepicker3.csscss/datepicker3.css')}}" rel="stylesheet">
 	<link href="{{asset('css/styles.css')}}" rel="stylesheet">

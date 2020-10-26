@@ -1,4 +1,35 @@
 @extends('templates.default_layout')
+{{-- section Chartjs-css --}}
+@section('chartjs-css')
+<link rel="stylesheet" href="{{ asset('vendor/chart-js/css/Chart.min.css') }}">
+@endsection
+
+{{-- section Chartjs-js --}}
+@section('chartjs-js')
+<script src="{{ asset('vendor/chart-js/js/Chart.min.js') }}"></script>
+<script>
+    // var dataBar = {
+    //     xLabels: {!! $commune_name !!},
+    //     datasets: [{
+    //         data: {!! $!!},
+    //         borderColor: {!! $cooperative_color !!},
+    //         backgroundColor: {!! $cooperative_color !!}
+    //     }]
+    // }
+    var dataPie = {
+        labels: {!! $commune_name !!},
+        datasets: [{
+            label: 'Nombre de cooperatives par province',
+            data: {!! $events_count_per_commune !!},
+            borderColor: {!! $commune_color !!},
+            backgroundColor: {!! $commune_color !!}
+        }]
+    }
+</script>
+<script src="{{ asset('js/my-chart.js') }}"></script>
+@endsection
+
+{{-- section content --}}
 @section('content')
 <div  class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
@@ -209,10 +240,11 @@
      <div class="col-lg-4"></div>       
    <div class="col-lg-10">
 
-   <div id="ca_graph"></div>
-     @columnchart('Finances', 'ca_graph')
-  </div>
-
+   <div class="card shadow mb-4 border-bottom-primary">
+        <div class="card-body">
+            <canvas id="myChartPie" width="400" height="150"></canvas>
+        </div>
+    </div>
   <script>
          //var url = "{{url('statistiques/chart')}}";
         // var Nom = new Array();

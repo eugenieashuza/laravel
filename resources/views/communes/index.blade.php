@@ -69,7 +69,7 @@
                 <td>{{$commune->province}}</td>          
                 <td> 
                 <form action="communes/destroycommune/{{$commune->id}}" method="post">                
-                    <a href="communes/edit/{{$commune->id}}" class="btn btn-primary" title="Editer"><i class="fa fa-pencil"></i></a>                        
+                    <a href="communes/edit/{{$commune->id}}" class="btn btn-primary" title="Editer"><i class="fa fa-edit"></i></a>                        
                                     @csrf
                                     <button type="submit" onclick="return confirm('do you want to delete this commune ?')" class="btn btn-danger  btn-xs" title="Delete"><i class="fa  fa-trash-o"></i></button>
                                 </form>  

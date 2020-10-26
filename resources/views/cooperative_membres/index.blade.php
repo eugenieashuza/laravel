@@ -23,7 +23,7 @@
        </div> 
               <form method="post">
               <fieldset>
-              <h3 class="text-white col-6 breadcrumb mb-0">Operations
+              <h3 class="text-white col-6 breadcrumb mb-0">Options
               <a href="{{url('cooperative_membres/create')}}" class="  add-element-item" data-toggle="tooltip" data-placement="right" title="Assossier ">
                   <i class="fa fa-plus"></i>
                 </a>
@@ -82,12 +82,14 @@
                         </td>
                         
                         <td>{{$cooperative_membre->categorie_membre}}</td>
-                     
-                      
-                       
+ 
                         <td>     
-                            <a href="cooperative_membres/edit/{{$cooperative_membre->id}}" class="btn btn-primary">Edit</a>
-                            
+                          
+                            <form action="cooperative_membres/destroycooperative_membre/{{$cooperative_membre->id}}"" method="post">                
+                            <a href="cooperative_membres/edit/{{$cooperative_membre->id}}"  title="Editer"><i class="fa fa-edit"></i></a>                        
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('do you want to delete this associate ?')" class="btn btn-danger  btn-xs" title="Delete"><i class="fa  fa-trash-o"></i></button>
+                                </form>  
                         </td>
                     </tr>
                     <?php $i++ ?>
